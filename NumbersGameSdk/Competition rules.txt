@@ -1,0 +1,14 @@
+﻿The competition between algorithms is done as follows:
+
+
+A random series of games is presented to each algorithm to solve. 
+The games get progressively harder; the minimum number of operations required to complete each game is increaased in waves.
+During each wave, a mixture of Countdown, CountdownPlus and Random8 game boards will be generated.
+
+
+Each algorithm is timed for its solution via the GetSolution method only.
+Algorithms that produce results in less numbers of operations immediately trump those that take more.
+Those with the same number of operations are differentiated according to the time taken.
+
+Each game contributes a point to the victor.
+
