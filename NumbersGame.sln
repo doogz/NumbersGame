@@ -26,6 +26,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speedfreak Solver", "Speedf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speedfreak Tests", "Speedfreak Tests\Speedfreak Tests.csproj", "{1062F3BD-D8B7-424D-B325-0B5B66C980D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Numbers Game Client", "NumbersGameWebClient\Numbers Game Client.csproj", "{F70545A9-047B-4A3E-A0BD-5EA03BF1FAAC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{87C796BC-F0DC-4443-BB13-FC9048543881} = {87C796BC-F0DC-4443-BB13-FC9048543881}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +77,10 @@ Global
 		{1062F3BD-D8B7-424D-B325-0B5B66C980D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1062F3BD-D8B7-424D-B325-0B5B66C980D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1062F3BD-D8B7-424D-B325-0B5B66C980D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F70545A9-047B-4A3E-A0BD-5EA03BF1FAAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F70545A9-047B-4A3E-A0BD-5EA03BF1FAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F70545A9-047B-4A3E-A0BD-5EA03BF1FAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F70545A9-047B-4A3E-A0BD-5EA03BF1FAAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

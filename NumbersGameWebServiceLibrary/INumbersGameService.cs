@@ -1,14 +1,19 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
 
-namespace NumbersGameWebServiceLibrary
+namespace ScottLogic.NumbersGame.Web
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "INumbersGameService" in both code and config file together.
     [ServiceContract(Namespace = "http://scottlogic.co.uk")]
     public interface INumbersGameService
     {
         [OperationContract]
-        string GetNewGame(int numValues);
+        bool GetStandardGame(int numBigValues, out int[] initialValues, out int target);
+
+
+        [OperationContract]
+        bool GetAdvancedGame(int numBigValues, out int[] initialValues, out int target);
+
 
         /*
         [OperationContract]
