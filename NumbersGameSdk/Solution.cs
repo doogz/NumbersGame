@@ -28,6 +28,10 @@ namespace ScottLogic.NumbersGame
 
         private readonly List<IOperation> _operations = new List<IOperation>();
 
+        public Solution()
+        {
+        }
+
         public Solution(IEnumerable<IOperation> operations)
         {
             _operations.AddRange(operations);

@@ -1,10 +1,17 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using Microsoft.SqlServer.Server;
 using ScottLogic.NumbersGame;
 
 namespace SpeedFreak.NumberCrunch
 {
-    struct LinkedOperation : IOperation
+    interface ILinkedOperation : IOperation
+    {
+        IOperation Parent { get; }
+        IList<IOperation> GetSequence();
+    }
+
+    struct LinkedOperation : ILinkedOperation
     {
         public int Lhs { get; private set; }
 
@@ -39,5 +46,31 @@ namespace SpeedFreak.NumberCrunch
         {
             Parent = parent;
         }
+
+        /// <summary>
+        /// Returns the sequence of operations leading up to and including this operation.
+        /// </summary>
+        /// <returns></returns>
+        public IList<IOperation> GetSequence()
+        {
+            List<IOperation> ops = new List<IOperation>() {this};
+            IOperation parent = Parent;
+            while (parent!=null)
+            {
+                ops.Insert(0,parent);
+                if (parent is ILinkedOperation)
+                {
+                    parent = (parent as ILinkedOperation).Parent;
+                }
+                else
+                {
+                    parent = null;
+                }
+            }
+            return ops;
+        }
+
+
+
     }
 }

@@ -29,6 +29,7 @@ namespace ScottLogic.NumbersGame.Console
                 System.Console.WriteLine("\r\nMenu:\r\n");
                 System.Console.WriteLine("S: Select Solver");
                 System.Console.WriteLine("P: Play the game manually");
+                System.Console.WriteLine("T: Test algorithms for completeness");
                 System.Console.WriteLine("C: Run the competition");
                 System.Console.WriteLine("Q: Quit the console");
                 System.Console.Write(">");
@@ -43,6 +44,9 @@ namespace ScottLogic.NumbersGame.Console
                             break;
                         case "P":
                             PlayGame();
+                            break;
+                        case "T":
+                            TestAlgorithms();
                             break;
                         case "C":
                             RunCompetition();
@@ -79,6 +83,79 @@ namespace ScottLogic.NumbersGame.Console
 
             }
         }
+
+        public static void TestAlgorithms()
+        {
+            System.Console.BackgroundColor = ConsoleColor.DarkGreen;
+            System.Console.ForegroundColor = ConsoleColor.Yellow;
+            System.Console.Clear();
+            System.Console.WriteLine("*** Algorithm Testing ***");
+            for (int g = 0; g < 100; ++g)
+            {
+                int bigNumbers = g%5;
+                int[] numbers;
+                int target;
+
+                var game = GameGenerator.GenerateCountdownGame(bigNumbers, out numbers, out target);
+                System.Console.WriteLine("Game #{0}, Big numbers={1}", g+1, bigNumbers);
+                System.Console.Write("Numbers = [");
+                for(int n=0; n<numbers.Length; ++n)
+                {
+                    System.Console.Write("{0}", numbers[n]);
+                    if ( n<numbers.Length-1)
+                        System.Console.Write(", ");
+                }
+                System.Console.WriteLine("], Target={0}", target);
+
+                bool repeatLastGame = false;
+                do
+                {
+                    
+                    ISolution solution;
+                    int numSolvers = SolverFactory.RegisteredSolvers;
+                    for (int s = 0; s < numSolvers; ++s)
+                    {
+                        ISolutionProvider sp = SolverFactory.CreateSolver(s);
+                        Stopwatch sw = new Stopwatch();
+                        sw.Start();
+                    
+                        if (sp.GetSolution(numbers, target, out solution))
+                        {
+                            sw.Stop();
+                            var elapsed = sw.Elapsed;
+                            System.Console.WriteLine("Solved by {0} in {1}s", sp.GetType().ToString(), elapsed.TotalSeconds);
+
+                        }
+                        else
+                        {
+                            sw.Stop();
+                            var elapsed = sw.Elapsed;
+
+                            System.Console.WriteLine("NOT Solved by {0} in {1}s", sp.GetType().ToString(), elapsed.TotalSeconds);
+                        
+                        }
+
+
+                    }
+                    System.Console.WriteLine("Hit enter to continue, type R to repeat last test, Q to quit");
+                    var input = System.Console.ReadLine();
+                    if (input != null)
+                    {
+                        input = input.ToUpper();
+                        repeatLastGame = (input == "R");
+
+                        if (input == "Q")
+                            return;
+                    }
+
+
+                } while (repeatLastGame);
+
+            }
+
+
+        }
+
         public static void RunCompetition()
         {
             System.Console.BackgroundColor = ConsoleColor.Blue;

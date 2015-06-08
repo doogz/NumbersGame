@@ -23,13 +23,20 @@ namespace SpeedFreak.NumberCrunch
     {
         private List<int> _values = new List<int>();
 
-        public GameState(int[] initialValues)
+
+        public GameState(IEnumerable<int> initialValues)
         {
             _values.AddRange(initialValues);
 
         }
+        public GameState(IGameState gameState)
+        {
+            _values.AddRange(gameState.Values);
 
-        public GameState(int[] initialValues, IEnumerable<IOperation> operations)
+        }
+
+
+        public GameState(IEnumerable<int> initialValues, IEnumerable<IOperation> operations)
             :this(initialValues)
         {
             foreach(var op in operations)
@@ -45,6 +52,15 @@ namespace SpeedFreak.NumberCrunch
             _values.Add(op.Result);
             return op.Result;
         }
+
+        public int Apply(IEnumerable<IOperation> ops)
+        {
+            int result = 0;
+            foreach (var op in ops)
+                result = Apply(op);
+            return result;
+        }
+
 
         public void Undo(IOperation op)
         {

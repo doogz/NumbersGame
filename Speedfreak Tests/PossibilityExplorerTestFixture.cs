@@ -7,17 +7,12 @@ using SpeedFreak.NumberCrunch;
 namespace Speedfreak_Tests
 {
     [TestFixture]
-    
     public class PossibilityExplorerTestFixture
     {
         [Test]
-        void foo()
+        public void foo()
         {
-            GameState game = new GameState(new[]{5,7});
-            var ops = PossibilityExplorer.Explore(game);
-            Assert.AreEqual(3, ops.Count());
-
-
+            
 
         }
     }

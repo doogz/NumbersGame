@@ -43,6 +43,7 @@
     <Compile Include="GameStateTestFixture.cs" />
     <Compile Include="PossibilityExplorerTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolverTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NumbersGameSdk\Numbers Game SDK.csproj">
