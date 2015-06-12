@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using NumbersGameWebAPI.Models;
+using ScottLogic.NumbersGame.Game;
 
 namespace NumbersGameWebAPI.Controllers
 {
@@ -13,16 +14,16 @@ namespace NumbersGameWebAPI.Controllers
     {
         // GET: api/Games
         [Route("")]
-        public IEnumerable<Game> GetAllGames()
+        public IEnumerable<Definition> GetAllGames()
         {
-            return Game.Repository;
+            return GameDefinition.Repository;
         }
 
         // GET: api/Games/{id}
         [Route("{id:int}")]
-        public Game GetGame(int id)
+        public Definition GetGame(int id)
         {
-            var game = Game.Repository.Find(g => g.GameId == id);
+            var game = GameDefinition.Repository.Find(g => g.GameId == id);
             return game;
         }
 

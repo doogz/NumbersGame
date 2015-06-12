@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Routing;
 using NumbersGameWebAPI.Models;
 using ScottLogic.NumbersGame;
+using ScottLogic.NumbersGame.Game;
 
 namespace NumbersGameWebAPI
 {
@@ -26,8 +27,8 @@ namespace NumbersGameWebAPI
                     if (GameGenerator.GenerateCountdownGame(big, out values, out target))
                     {
                         gameId++;
-                        var g = new Game { GameId = gameId, BigNumbers = big, StartingValues = values, Target = target };
-                        Game.Repository.Add(g);
+                        var g = new Definition { GameId = gameId, BigNumbers = big, StartingValues = values, Target = target };
+                        GameDefinition.Repository.Add(g);
 
                     }
                 }

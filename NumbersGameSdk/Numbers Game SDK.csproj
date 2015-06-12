@@ -52,6 +52,7 @@
     <Compile Include="Competition\ICompetition.cs" />
     <Compile Include="Competition\ICompetitor.cs" />
     <Compile Include="GameGenerator.cs" />
+    <Compile Include="Game\Definition.cs" />
     <Compile Include="Game\INumbersGame.cs" />
     <Compile Include="Game\NumbersGame.cs" />
     <Compile Include="Game\OperationDetail.cs" />
