@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speedfreak Tests", "Speedfr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopCompetitionClient", "DesktopCompetitionClient\DesktopCompetitionClient.csproj", "{061D4FE7-E8A2-4407-9737-95F59C7A6E56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameWebAPI", "NumbersGameWebAPI\NumbersGameWebAPI.csproj", "{4D2268E2-7D0D-49D5-A3C1-76D1C91357F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameWebAPI", "NumbersGameWebAPI\NumbersGameWebAPI.csproj", "{877042E7-2B20-495F-BA99-EDEE05EF37EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,10 +62,10 @@ Global
 		{061D4FE7-E8A2-4407-9737-95F59C7A6E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{061D4FE7-E8A2-4407-9737-95F59C7A6E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{061D4FE7-E8A2-4407-9737-95F59C7A6E56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D2268E2-7D0D-49D5-A3C1-76D1C91357F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D2268E2-7D0D-49D5-A3C1-76D1C91357F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D2268E2-7D0D-49D5-A3C1-76D1C91357F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D2268E2-7D0D-49D5-A3C1-76D1C91357F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{877042E7-2B20-495F-BA99-EDEE05EF37EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{877042E7-2B20-495F-BA99-EDEE05EF37EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{877042E7-2B20-495F-BA99-EDEE05EF37EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{877042E7-2B20-495F-BA99-EDEE05EF37EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

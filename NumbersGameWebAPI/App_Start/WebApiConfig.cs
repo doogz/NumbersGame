@@ -14,11 +14,16 @@ namespace NumbersGameWebAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            // Avoid routes by convention in favour of routes using attributes:
+            /*
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+             * */
+            
         }
+     
     }
 }
