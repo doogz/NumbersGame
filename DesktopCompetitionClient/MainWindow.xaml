@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.ignore.com"
         mc:Ignorable="d ignore"
-        Height="373"
-        Width="419"
+        Height="377"
+        Width="521"
         Title="MVVM Light Application"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
@@ -17,34 +17,86 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-
-    <Grid x:Name="LayoutRoot" Margin="0,0,2,1">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="59*"/>
-            <RowDefinition Height="211*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="53*"/>
-            <ColumnDefinition Width="93*"/>
-        </Grid.ColumnDefinitions>
-
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" FontSize="24"
+    <StackPanel Orientation="Vertical">
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="6" Grid.Column="0" FontSize="24"
                    FontWeight="Bold"
                    Foreground="Purple"
                    Text="{Binding WelcomeTitle}"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
-                   TextWrapping="Wrap"/>
+                   TextWrapping="NoWrap"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Margin="5" Name="NewGameButton" VerticalAlignment="top" Content="New Game" Grid.Column="0" Grid.Row="1" Click="NewGameButton_Click"/>
+            <Button Margin="5" Name="SolveButton" Content="Submit" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="116" Click="SolveButton_Click"/>
+        </StackPanel>
+
+        <Grid x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Starting numbers:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+            <Label Name="NumbersLabel" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="2" BorderBrush="Blue"/>
+
+            <Label Content="Target:" Grid.Column="0" Grid.Row="1"/>
+            <Label Name="TargetLabel" Content="" Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="Blue" VerticalAlignment="Center"/>
+
+            <Label Content="Big numbers:" Grid.Column="0" VerticalAlignment="Center" Grid.Row="2"/>
+            <Label Name="BigNumbersLabel" Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" BorderThickness="2" BorderBrush="Blue" />
+
+
+
+        </Grid>
+    </StackPanel>
+    <!--
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="6" Grid.Column="0" FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="Purple"
+                   Text="{Binding WelcomeTitle}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   TextWrapping="NoWrap"/>
+
         
-        <Button Name="NewGameButton" Content="New Game" HorizontalAlignment="Left" Margin="20,23,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="NewGameButton_Click"/>
-        <Label Content="The numbers are:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,19,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Name="NumbersLabel" Content="100,50,10,7,4,2" Grid.Column="1" BorderThickness="2" BorderBrush="Blue" HorizontalAlignment="Left" Margin="134,19,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="The target is:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,54,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="675" Grid.Column="1" HorizontalAlignment="Left" BorderThickness="2" BorderBrush="Blue" Margin="134,60,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Your solution is:" Grid.Column="1" HorizontalAlignment="Left" Margin="18,115,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="18,141,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="208"/>
-        <Button Name="SolveButton" Content="Submit" Grid.Column="1" HorizontalAlignment="Left" Margin="18,186,0,0" Grid.Row="1" VerticalAlignment="Top" Width="116" Click="SolveButton_Click"/>
+
+        <Label Content="Starting numbers:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+        <Label Name="NumbersLabel" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="2" BorderBrush="Blue"/>
+
+        <Label Content="Target:" Grid.Column="3" Grid.Row="2"/>
+        <Label Name="TargetLabel" Content="" Grid.Column="4" Grid.Row="2" BorderThickness="2" BorderBrush="Blue" VerticalAlignment="Center"/>
+
+        <Label Content="Big numbers:" Grid.Column="1" VerticalAlignment="Center" Grid.Row="3"/>
+        <Label Name="BigNumbersLabel" Grid.Column="2" VerticalAlignment="Center" Grid.Row="3" BorderThickness="2" BorderBrush="Blue" />
+
+        <Label Content="Your solution is:" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" MinHeight="30"/>
+        <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" MinHeight="30" VerticalAlignment="Center" MinWidth="100"/>
+
+
 
 
     </Grid>
+    -->
 </Window>

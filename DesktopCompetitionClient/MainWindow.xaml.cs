@@ -26,7 +26,8 @@ namespace DesktopCompetitionClient
 
 
         /// <summary>
-        /// Yes, this is using traditional .net events at the moment
+        /// Yes, this is using traditional .net events at the moment.
+        /// TODO: Use mvvm!
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -55,7 +56,8 @@ namespace DesktopCompetitionClient
                             (n < count - 1) ? ", " : "}"));
                     }
                     NumbersLabel.Content = sb.ToString();
-
+                    BigNumbersLabel.Content = game.BigNumbers;
+                    TargetLabel.Content = game.Target;
                 }
             }
             
