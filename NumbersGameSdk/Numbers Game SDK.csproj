@@ -44,6 +44,13 @@
     <Compile Include="Bags\CountdownPlusNumberBags.cs" />
     <Compile Include="Bags\CountdownSmallNumberBag.cs" />
     <Compile Include="Bags\INumberBag.cs" />
+    <Compile Include="Competition\ChallengeSolution.cs" />
+    <Compile Include="Competition\Competition.cs" />
+    <Compile Include="Competition\Competitor.cs" />
+    <Compile Include="Competition\IChallenge.cs" />
+    <Compile Include="Competition\IChallengeSolution.cs" />
+    <Compile Include="Competition\ICompetition.cs" />
+    <Compile Include="Competition\ICompetitor.cs" />
     <Compile Include="GameGenerator.cs" />
     <Compile Include="Game\INumbersGame.cs" />
     <Compile Include="Game\NumbersGame.cs" />

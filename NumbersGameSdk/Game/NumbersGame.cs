@@ -4,7 +4,7 @@ using System.Linq;
 
 // The Game sub-namespace defines an optional part of the SDK.
 // It defines an interface for playing a game, INumbersGame, and provides one standard implementation, NumbersGame.
-// The DeepRecursiveSolver uses this NumbersGame.
+// The reference algorithms uses the SDK's NumbersGame; faster implementation are possible.
 namespace ScottLogic.NumbersGame.Game
 {
     /// <summary>
@@ -12,6 +12,7 @@ namespace ScottLogic.NumbersGame.Game
     /// It's a poor class design, by the way. 
     /// Q. Is this class modelling the current state, or remembering the history?
     /// (A. Both)
+    /// TODO: Refactor history into separate class
     /// </summary>
     public class NumbersGame : INumbersGame
     {
