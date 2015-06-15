@@ -24,6 +24,7 @@ namespace NumbersGameWebAPI
                 {
                     int[] values;
                     int target;
+                    System.Threading.Thread.Sleep(50);
                     if (GameGenerator.GenerateCountdownGame(big, out values, out target))
                     {
                         gameId++;

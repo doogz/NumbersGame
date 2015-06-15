@@ -65,7 +65,7 @@ namespace MvvmWebApiClient.ViewModels
         {
             
         }
-
+        /*
         private int _target = 911;
         private int[] _currentValues = new int[] { 100, 25, 10, 7, 5, 2 };
 
@@ -81,5 +81,6 @@ namespace MvvmWebApiClient.ViewModels
             get { return _currentValues; }
             private set { _currentValues = value; }
         }
+         * */
     }
 }
