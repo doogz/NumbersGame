@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 
@@ -15,6 +15,7 @@ namespace MvvmWebApiClient.ViewModels
             //NewGameCommand = new DelegateCommand<object>(OnNewGame);
             NewGameCommand = new DelegateCommand(OnNewGame);
             SubmitSolutionCommand = new DelegateCommand(OnSubmitSolution);
+            NumbersGameViewModel = new NumbersGameViewModel();
         }
 
         /// <summary>
@@ -24,10 +25,40 @@ namespace MvvmWebApiClient.ViewModels
         public ICommand SubmitSolutionCommand { get; private set; }
         public NumbersGameViewModel NumbersGameViewModel { get; set; }
 
-        private void OnNewGame()
-        {
+        private static int _nextGameId;
 
-            
+        private async void OnNewGame()
+        {
+            ++_nextGameId;
+            string uri = string.Format("api/games/{0}", _nextGameId);
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:40477/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    ScottLogic.NumbersGame.Game.Definition game =
+                        await response.Content.ReadAsAsync<ScottLogic.NumbersGame.Game.Definition>();
+                    /*
+                    var sb = new StringBuilder();
+                    sb.Append("{");
+                    int count = game.StartingValues.Length;
+                    for (int n = 0; n < count; ++n)
+                    {
+                        sb.Append(String.Format("{0}{1}",
+                            game.StartingValues[n],
+                            (n < count - 1) ? ", " : "}"));
+                    }
+                    */
+                    NumbersGameViewModel.Target = game.Target;
+                    NumbersGameViewModel.CurrentValues = game.StartingValues;
+                }
+
+            }
         }
 
         private void OnSubmitSolution()

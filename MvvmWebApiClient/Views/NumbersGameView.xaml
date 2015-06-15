@@ -28,7 +28,7 @@
         </Viewbox>
 
         <ListView ItemsSource="{Binding CurrentValues}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" SelectionMode="Multiple" FontSize="24">
-            <!-- How to make a listbox display horizontally - change the template -->
+            <!-- How to make a listview/box display horizontally - change the template -->
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"></StackPanel>

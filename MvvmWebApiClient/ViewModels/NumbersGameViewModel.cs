@@ -11,12 +11,21 @@ namespace MvvmWebApiClient.ViewModels
     {
         public NumbersGameViewModel()
         {
-            Target = 911;
-            CurrentValues = new [] { 100, 25, 10, 7, 5, 2 };
+            _target = 0;
+            CurrentValues = new int[] {};
+        }
+        public NumbersGameViewModel(bool designMode)
+        {
+            Target = 715;
+            CurrentValues = new[] { 100, 25, 10, 7, 5, 2 };
         }
 
-        public int Target { get; private set; }
 
+        public int Target
+        {
+            get { return _target; }
+            set { SetProperty(ref _target, value); }
+        }
 
         public int[] CurrentValues
         {
@@ -24,6 +33,7 @@ namespace MvvmWebApiClient.ViewModels
             set { SetProperty(ref _currentValues, value); }
         }
 
+        private int _target;
         private int[] _currentValues;
     }
 }

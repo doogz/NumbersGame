@@ -11,7 +11,7 @@ namespace MvvmWebApiClient
     {
         public NumbersGameViewDesignViewModel()
         {
-            NumbersGameViewModel = new NumbersGameViewModel();
+            NumbersGameViewModel = new NumbersGameViewModel(true); // Selects design mode constructor
         }
         public NumbersGameViewModel NumbersGameViewModel { get; set; }
 
