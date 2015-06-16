@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
+using System.Diagnostics;
 
 namespace MvvmWebApiClient.Views
 {
@@ -24,6 +25,19 @@ namespace MvvmWebApiClient.Views
         public NumbersGameView()
         {
             InitializeComponent();
+        }
+
+        private void NumbersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // We need to maintain the ViewModel's collection of selected numbers by listening to this event
+            var selItems = NumbersList.SelectedItems;
+            Debug.WriteLine("There are {0} selected items", selItems.Count);
+            //TODO: Finish this. The view will need to talk directly to the viewmodel to set the property.
+            
+            // Also, although the solving algorithms and the SDK needn't care about individual instances of particular values,
+            // the user would be very dissatisifed to click e.g. the fifth number along, of value 10, and witness e.g. the second number
+            // along - also of value 10 - being 'selected' instead.
+
         }
     }
 }

@@ -41,7 +41,7 @@
             SelectionMode="Multiple" FontSize="24"
             ItemsSource="{Binding CurrentGame.CurrentNumbers}"
             ItemsPanel="{DynamicResource NumbersListItemsPanelTemplate}"
-            ItemTemplate ="{StaticResource NumberTileTemplate}" >
+            ItemTemplate ="{StaticResource NumberTileTemplate}" SelectionChanged="NumbersList_SelectionChanged" >
             
             <ListBox.Resources>
                 <Style TargetType="ListBoxItem">
