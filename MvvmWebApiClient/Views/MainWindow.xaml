@@ -20,14 +20,14 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
 
-            </Grid.RowDefinitions>
+        </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"  FontSize="20" HorizontalAlignment="Center">Numbers Game Desktop Client</TextBlock>
-        <views:NumbersGameView Grid.Row="1" DataContext="{Binding NumbersGameViewModel}" Height="246" VerticalAlignment="Top"/>
+        <views:NumbersGameView Grid.Row="1" DataContext="{Binding NumbersGameViewModel}" VerticalAlignment="Top" Loaded="NumbersGameView_Loaded"/>
         
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Command="{Binding NewGameCommand}" >New Game</Button>
-            <Button Command="{Binding SubmitSolutionCommand}" Margin="10,0,0,0">Submit</Button>
+            <Button Command="{Binding NewGameCommand}" Margin="10,5,5,5">New Game</Button>
+            <Button Command="{Binding SubmitSolutionCommand}" Margin="5,5,5,5">Submit</Button>
             
         </StackPanel>
 

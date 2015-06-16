@@ -32,7 +32,13 @@ namespace ScottLogic.NumbersGame.Game
         // ---------------------------------------------------------------
 
         // Main public constructor
+        public NumbersGame()
+        {
+            // Note that the private fields (above) are initialised beforehand
+        }
+
         public NumbersGame(IEnumerable<int> initVals, int target = 0)
+            :this()
         {
             foreach (var v in initVals)
             {

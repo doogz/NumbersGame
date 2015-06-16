@@ -13,6 +13,11 @@ namespace MvvmWebApiClient.Views
         {
             InitializeComponent();
         }
+
+        private void NumbersGameView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
         
     }
 }

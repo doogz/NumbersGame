@@ -4,7 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate x:Key="NumberTileTemplate">
+            <Border BorderThickness="4" BorderBrush="BurlyWood">
+                <TextBlock Width="40" Height="40" FontSize="24"
+                           Foreground="Azure" Background="RoyalBlue"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,15,15,15"
+                           Text="{Binding}"/>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -23,23 +34,37 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Viewbox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Label Content="{Binding Target}"></Label>
-        </Viewbox>
+        <Label Name="TargetNumber" FontSize="40"  HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="{Binding CurrentGame.Target}"/>
 
-        <ListView ItemsSource="{Binding CurrentValues}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" SelectionMode="Multiple" FontSize="24">
-            <!-- How to make a listview/box display horizontally - change the template -->
-            <ListView.ItemsPanel>
+        <ListView Name="NumbersList"
+            Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" 
+            SelectionMode="Multiple" FontSize="24"
+            ItemsSource="{Binding CurrentGame.CurrentNumbers}"
+            ItemsPanel="{DynamicResource NumbersListItemsPanelTemplate}"
+            ItemTemplate ="{StaticResource NumberTileTemplate}">
+            
+            <ListView.Resources>
+                <ItemsPanelTemplate x:Key="NumbersListItemsPanelTemplate">
+                    <VirtualizingStackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </ListView.Resources>
+
+            <!--
+            <ItemsControl>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"></StackPanel>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-
+            </ItemsControl>
+            -->
         </ListView>
-        <Button Command="{Binding AdditionCommand}" FontSize="24" Grid.Column="1" Grid.Row="4">+</Button>
-        <Button Command="{Binding SubtractionCommand}" FontSize="24" Grid.Column="2" Grid.Row="4">-</Button>
-        <Button FontSize="24" Grid.Column="3" Grid.Row="4">*</Button>
-        <Button FontSize="24" Grid.Column="4" Grid.Row="4">/</Button>
+
+        <!-- ItemsSource="{Binding CurrentValues}" -->
+        <!-- ItemTemplate ="{StaticResource numberTileTemplate}"> -->
+
+        <Button Command="{Binding AdditionCommand}" FontSize="24" Grid.Column="1" Grid.Row="3">+</Button>
+        <Button Command="{Binding SubtractionCommand}" FontSize="24" Grid.Column="2" Grid.Row="3">-</Button>
+        <Button FontSize="24" Grid.Column="3" Grid.Row="3">*</Button>
+        <Button FontSize="24" Grid.Column="4" Grid.Row="3">/</Button>
 
 
     </Grid>
