@@ -36,30 +36,38 @@
 
         <Label Name="TargetNumber" FontSize="40"  HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="{Binding CurrentGame.Target}"/>
 
-        <ListView Name="NumbersList"
+        <ListBox Name="NumbersList"
             Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" 
             SelectionMode="Multiple" FontSize="24"
             ItemsSource="{Binding CurrentGame.CurrentNumbers}"
             ItemsPanel="{DynamicResource NumbersListItemsPanelTemplate}"
-            ItemTemplate ="{StaticResource NumberTileTemplate}">
+            ItemTemplate ="{StaticResource NumberTileTemplate}" >
             
-            <ListView.Resources>
+            <ListBox.Resources>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border Name="Border" Padding="2" SnapsToDevicePixels="true">
+                                    <ContentPresenter />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter TargetName="Border" Property="Background"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
                 <ItemsPanelTemplate x:Key="NumbersListItemsPanelTemplate">
                     <VirtualizingStackPanel Orientation="Horizontal" IsItemsHost="True"/>
                 </ItemsPanelTemplate>
-            </ListView.Resources>
-
-            <!--
-            <ItemsControl>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"></StackPanel>
-                </ItemsPanelTemplate>
-            </ItemsControl>
-            -->
-        </ListView>
-
-        <!-- ItemsSource="{Binding CurrentValues}" -->
-        <!-- ItemTemplate ="{StaticResource numberTileTemplate}"> -->
+            </ListBox.Resources>
+            
+        </ListBox>
 
         <Button Command="{Binding AdditionCommand}" FontSize="24" Grid.Column="1" Grid.Row="3">+</Button>
         <Button Command="{Binding SubtractionCommand}" FontSize="24" Grid.Column="2" Grid.Row="3">-</Button>

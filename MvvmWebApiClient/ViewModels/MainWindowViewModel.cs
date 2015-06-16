@@ -41,21 +41,13 @@ namespace MvvmWebApiClient.ViewModels
                 HttpResponseMessage response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    ScottLogic.NumbersGame.Game.Definition game =
+                    ScottLogic.NumbersGame.Game.Definition gameDefinition =
                         await response.Content.ReadAsAsync<ScottLogic.NumbersGame.Game.Definition>();
-                    /*
-                    var sb = new StringBuilder();
-                    sb.Append("{");
-                    int count = game.StartingValues.Length;
-                    for (int n = 0; n < count; ++n)
-                    {
-                        sb.Append(String.Format("{0}{1}",
-                            game.StartingValues[n],
-                            (n < count - 1) ? ", " : "}"));
-                    }
-                    */
-                    NumbersGameViewModel.Target = game.Target;
-                    NumbersGameViewModel.CurrentValues = game.StartingValues;
+
+                    var game=new ScottLogic.NumbersGame.Game.NumbersGame(gameDefinition.StartingValues,
+                        gameDefinition.Target);
+
+                    NumbersGameViewModel.CurrentGame = game;
                 }
 
             }
