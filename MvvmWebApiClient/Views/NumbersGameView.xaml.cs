@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
 using System.Diagnostics;
+using MvvmWebApiClient.ViewModels;
 
 namespace MvvmWebApiClient.Views
 {
@@ -38,6 +39,26 @@ namespace MvvmWebApiClient.Views
             // the user would be very dissatisifed to click e.g. the fifth number along, of value 10, and witness e.g. the second number
             // along - also of value 10 - being 'selected' instead.
 
+            // Q. Where to get the viewmodel from?
+            var context = NumbersList.DataContext;
+            var viewModel = context as NumbersGameViewModel;
+            if (viewModel != null)
+            {
+                /* So far so good.
+                 * Is there a nicer way to do this?:
+                
+                List<int> selectedInts = new List<int>();
+                foreach (var i in selItems)
+                {
+                    selectedInts.Add((int)i);
+                }
+                
+                 */
+                
+                // YES! Thank you resharper:
+                List<int> selectedInts = selItems.Cast<int>().ToList();
+                viewModel.SelectedNumbers = selectedInts;
+            }
         }
     }
 }

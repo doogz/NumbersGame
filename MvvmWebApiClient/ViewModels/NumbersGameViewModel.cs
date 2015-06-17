@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,10 @@ namespace MvvmWebApiClient.ViewModels
 
 
         }
+        /// <summary>
+        /// This constructor is specifically to support design-time data
+        /// </summary>
+        /// <param name="designMode"></param>
         public NumbersGameViewModel(bool designMode)
             :this()
         {
@@ -99,7 +104,9 @@ namespace MvvmWebApiClient.ViewModels
 
         private bool CanDoAddition(object ob)
         {
-            return SelectedNumbers.Count() == 2;
+            bool canDo = SelectedNumbers.Count() == 2;
+            Debug.WriteLine("CanDoAddition() - {0}", canDo);
+            return canDo;
         }
         
         private bool CanDoSubtraction(object ob)
