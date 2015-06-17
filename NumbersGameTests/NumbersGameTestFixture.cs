@@ -9,6 +9,16 @@ namespace ScottLogic.NumbersGameTests
     public class NumbersGameTestFixture
     {
         [Test]
+        public void TwoOfTheSame()
+        {
+            var ng = new NumbersGame.Game.NumbersGame(new[] {2, 2, 10, 5, 75});
+            Assert.AreEqual(6,ng.NumberCount);
+            var op = new Operation(2, 2, Operator.Multiplication);
+            ng.DoOperation(op);
+            Assert.Contains(4, ng.CurrentNumbers);
+
+        }
+        [Test]
         public void Undo()
         {
             int[] initVars = {1,2,3,4,5};
