@@ -18,39 +18,31 @@ namespace MvvmWebApiClient.Views
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Maintains the ViewModel's collection of selected numbers by listening to this event.
+        /// 
+        /// Note: The SDK's INumbersGame has no concept of ordereding; Numbers.CurrentValues returns arrays with *no* fixed order.
+        /// We should make this API definition explicit, using IEnumerable rather than IList.
+        /// The ViewModel model will be able to support the undoing of operations through its NumbersGame, although if we try to restore
+        /// the selection that corresponds with a past operation, selected from a list of past operations, we would not be able to
+        /// distinguish one 'X' from another, without some additional work.
+        /// Note that, by the time we get to the SDK's (optional) Game.NumbersGames implementation, it tries to optimise operations on List<int>, 
+        /// and needs indices for its OperationDetail class, used during Undo. We'd need something similar to replicate "Undo-with-mimicked-selection"
+        /// 
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumbersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // We need to maintain the ViewModel's collection of selected numbers by listening to this event
+            // We maintain the ViewModel's collection of selected numbers by listening to this event.
             var selItems = NumbersList.SelectedItems;
-            Debug.WriteLine("There are {0} selected items", selItems.Count);
-            //TODO: Finish this. The view will need to talk directly to the viewmodel to set the property.
-            
-            // Also, although the solving algorithms and the SDK needn't care about individual instances of particular values,
-            // the user would be very dissatisifed to click e.g. the fifth number along, of value 10, and witness e.g. the second number
-            // along - also of value 10 - being 'selected' instead.
-
-            // Q. Where to get the viewmodel from?
             var context = NumbersList.DataContext;
             var viewModel = context as NumbersGameViewModel;
             if (viewModel != null)
             {
-                /* So far so good.
-                 * Is there a nicer way to do this?:
-                
-                List<int> selectedInts = new List<int>();
-                foreach (var i in selItems)
-                {
-                    selectedInts.Add((int)i);
-                }
-                
-                 */
-                
-                // YES! Thank you resharper:
                 List<int> selectedInts = selItems.Cast<int>().ToList();
                 viewModel.SelectedNumbers = selectedInts;
-
-                // Force CanExecute requeries
-               // CommandManager.InvalidateRequerySuggested();
             }
         }
     }
