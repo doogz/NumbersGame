@@ -1,21 +1,22 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using MvvmWebApiClient.Services;
+using ScottLogic.NumbersGame;
+using ScottLogic.NumbersGame.Game;
 
 namespace MvvmWebApiClient.ViewModels
 {
     public class MainWindowViewModel
     {
+        private INumbersGameWebService _webService;
         public MainWindowViewModel()
         {
             //NewGameCommand = new DelegateCommand<object>(OnNewGame);
             NewGameCommand = new DelegateCommand(OnNewGame);
-            SubmitSolutionCommand = new DelegateCommand(OnSubmitSolution);
+            SubmitSolutionCommand = new DelegateCommand(OnSubmitSolution, CanSubmitSolution);
             NumbersGameViewModel = new NumbersGameViewModel();
+            //TODO: Unity/MEF DI
+            _webService = new NumbersGameWebService();
         }
 
         /// <summary>
@@ -25,54 +26,33 @@ namespace MvvmWebApiClient.ViewModels
         public ICommand SubmitSolutionCommand { get; private set; }
         public NumbersGameViewModel NumbersGameViewModel { get; set; }
 
-        private static int _nextGameId;
 
         private async void OnNewGame()
         {
-            ++_nextGameId;
-            string uri = string.Format("api/games/{0}", _nextGameId);
-
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:40477/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = await client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    ScottLogic.NumbersGame.Game.Definition gameDefinition =
-                        await response.Content.ReadAsAsync<ScottLogic.NumbersGame.Game.Definition>();
-
-                    var game=new ScottLogic.NumbersGame.Game.NumbersGame(gameDefinition.StartingValues,
-                        gameDefinition.Target);
-
-                    NumbersGameViewModel.CurrentGame = game;
-                }
-
-            }
-        }
-
-        private void OnSubmitSolution()
-        {
+            Definition gameDefinition = await _webService.GetNextGameAsync();
+            var game = new NumbersGame(gameDefinition.StartingValues,
+                gameDefinition.Target);
+            NumbersGameViewModel.CurrentGame = game;
             
         }
-        /*
-        private int _target = 911;
-        private int[] _currentValues = new int[] { 100, 25, 10, 7, 5, 2 };
-
-        public int Target
+        private void OnSubmitSolution()
         {
-            get { return _target; }
-            private set { _target = value; }
+            var solution = new Solution(NumbersGameViewModel.CurrentGame.History);
+
         }
+
+        private bool CanSubmitSolution()
+        {
+            // TODO: 
+            // We might want to verify we've actually generated the target here.
+            // If that's the case, then the point of submitting the solution would be to register the time taken for some sort of competition, perhaps.
+            // We could also allow for "giving up", whereby the solution is rendered by the server, on request.
+            // We might also decide to check our random games are suitably "hard", or get "harder", in a competition scenarion.
+            // All just ideas for where we could take this.
+
+            return true;
+        }
+
         
-
-        public int[] CurrentValues
-        {
-            get { return _currentValues; }
-            private set { _currentValues = value; }
-        }
-         * */
     }
 }

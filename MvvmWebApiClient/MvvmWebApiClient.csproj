@@ -65,6 +65,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="NumbersGameViewDesignViewModel.cs" />
+    <Compile Include="Services\INumbersGameWebService.cs" />
+    <Compile Include="Services\NumbersGameWebService.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NumbersGameViewModel.cs" />
     <Compile Include="Views\NumbersGameView.xaml.cs">
@@ -121,6 +123,7 @@
       <Name>Numbers Game SDK</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

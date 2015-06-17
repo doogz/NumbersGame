@@ -31,13 +31,14 @@ namespace MvvmWebApiClient.ViewModels
             
             DivisionCommand = new DelegateCommand( OnDivision, 
                                                    CanDoDivision);
-            
+
             ////
             OperationHistory = new List<IOperation>();
             SelectedNumbers = new List<int>();
             Debug.WriteLine("NumbersGameViewModel created, hash= {0}", GetHashCode());
 
         }
+
         /// <summary>
         /// This constructor is specifically to support design-time data
         /// </summary>
@@ -61,16 +62,7 @@ namespace MvvmWebApiClient.ViewModels
             set { SetProperty( ref _game,value); }
         }
 
-        public int Target
-        {
-            get { return CurrentGame.Target; }
-        }
-
-        public int[] CurrentValues
-        {
-            get { return CurrentGame.CurrentNumbers; }
-        }
-
+       
         public IList<int> SelectedNumbers
         {
             get { return _selectedNumbers; }
