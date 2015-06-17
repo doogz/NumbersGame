@@ -71,8 +71,8 @@
 
         <Button Command="{Binding AdditionCommand}" FontSize="24" Grid.Column="1" Grid.Row="3">+</Button>
         <Button Command="{Binding SubtractionCommand}" FontSize="24" Grid.Column="2" Grid.Row="3">-</Button>
-        <Button FontSize="24" Grid.Column="3" Grid.Row="3">*</Button>
-        <Button FontSize="24" Grid.Column="4" Grid.Row="3">/</Button>
+        <Button Command="{Binding MultiplicationCommand}" FontSize="24" Grid.Column="3" Grid.Row="3">*</Button>
+        <Button Command="{Binding DivisionCommand}" FontSize="24" Grid.Column="4" Grid.Row="3">/</Button>
 
 
     </Grid>
