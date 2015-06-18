@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Numbers Game Tests", "NumbersGameTests\Numbers Game Tests.csproj", "{85EF4237-8514-40AD-BA28-C3F3C8756D05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameSDK.Tests", "NumbersGameTests\NumbersGameSDK.Tests.csproj", "{85EF4237-8514-40AD-BA28-C3F3C8756D05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameConsole", "NumbersGameConsole\NumbersGameConsole.csproj", "{DA8BD95B-3052-4B1C-BB9A-0C47E08B619B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DFC1FA58-7832-4B62-9E5C-C95631135E05} = {DFC1FA58-7832-4B62-9E5C-C95631135E05}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Numbers Game SDK", "NumbersGameSdk\Numbers Game SDK.csproj", "{BC4D0096-7745-4702-8C92-3303BB61AEDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameSDK", "NumbersGameSdk\NumbersGameSDK.csproj", "{BC4D0096-7745-4702-8C92-3303BB61AEDC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reference Algorithms", "Reference Algorithms\Reference Algorithms.csproj", "{DFC1FA58-7832-4B62-9E5C-C95631135E05}"
 EndProject

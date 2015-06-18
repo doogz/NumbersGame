@@ -34,6 +34,7 @@ namespace ScottLogic.NumbersGameTests
             int[] newVals = ng.CurrentNumbers;
             Assert.AreEqual(4, newVals.Length);
             Assert.AreEqual(new []{1,3,2,5}, ng.CurrentNumbers);
+            Assert.True(ng.History.Count() == 1);
             ng.UndoOperation();
             int[] curVals = ng.CurrentNumbers;
             Assert.AreEqual(initVars, curVals);

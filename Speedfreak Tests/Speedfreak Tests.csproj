@@ -48,9 +48,9 @@
     <Compile Include="SolverTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NumbersGameSdk\Numbers Game SDK.csproj">
+    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSDK.csproj">
       <Project>{BC4D0096-7745-4702-8C92-3303BB61AEDC}</Project>
-      <Name>Numbers Game SDK</Name>
+      <Name>NumbersGameSDK</Name>
     </ProjectReference>
     <ProjectReference Include="..\Speedfreak Solver\Speedfreak Solver.csproj">
       <Project>{543CE492-BA9D-4324-92D8-CB181486C4D8}</Project>

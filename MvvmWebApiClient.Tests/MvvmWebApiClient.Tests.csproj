@@ -56,9 +56,9 @@
       <Project>{39B87706-E044-42E1-93A0-A97B68127366}</Project>
       <Name>MvvmWebApiClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NumbersGameSdk\Numbers Game SDK.csproj">
+    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSDK.csproj">
       <Project>{BC4D0096-7745-4702-8C92-3303BB61AEDC}</Project>
-      <Name>Numbers Game SDK</Name>
+      <Name>NumbersGameSDK</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

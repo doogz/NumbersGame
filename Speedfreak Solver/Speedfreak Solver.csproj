@@ -47,9 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NumbersGameSdk\Numbers Game SDK.csproj">
+    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSDK.csproj">
       <Project>{bc4d0096-7745-4702-8c92-3303bb61aedc}</Project>
-      <Name>Numbers Game SDK</Name>
+      <Name>NumbersGameSDK</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

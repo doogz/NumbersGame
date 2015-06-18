@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -18,15 +15,11 @@ namespace MvvmWebApiClient.ViewModels
         public NumbersGameViewModel()
         {
             CurrentGame = new NumbersGame();
-            //CurrentGame = new NumbersGame(new[] { 100, 25, 10, 7, 5, 2 }, 715);
-
-            AdditionCommand = new DelegateCommand(OnAddition, CanDoAddition);
-            SubtractionCommand = new DelegateCommand(OnSubtraction, CanDoSubtraction);
-            MultiplicationCommand = new DelegateCommand(OnMultiplication, CanDoMultiplication);
-            DivisionCommand = new DelegateCommand(OnDivision, CanDoDivision);
-            UndoCommand = new DelegateCommand(UndoLastOperation);
-
-            OperationHistory = new List<IOperation>();
+            AdditionCommand = new DelegateCommand(DoAddition, CanDoAddition);
+            SubtractionCommand = new DelegateCommand(DoSubtraction, CanDoSubtraction);
+            MultiplicationCommand = new DelegateCommand(DoMultiplication, CanDoMultiplication);
+            DivisionCommand = new DelegateCommand(DoDivision, CanDoDivision);
+            UndoCommand = new DelegateCommand(UndoLastOperation, CanUndo);
             SelectedNumbers = new List<int>();
         }
 
@@ -46,6 +39,7 @@ namespace MvvmWebApiClient.ViewModels
         public ICommand MultiplicationCommand { get; private set; }
         public ICommand DivisionCommand { get; private set; }
         public ICommand UndoCommand { get; private set; }
+        //public ICommand SubmitCommand { get; private set; }
 
 
         // Properties
@@ -62,7 +56,12 @@ namespace MvvmWebApiClient.ViewModels
 
         public bool UndoPossible
         {
-            get { return OperationHistory.Count > 0; }
+            get { return OperationHistory.Any(); }
+        }
+
+        private bool CanUndo()
+        {
+            return UndoPossible;
         }
 
         public IList<int> SelectedNumbers
@@ -86,11 +85,17 @@ namespace MvvmWebApiClient.ViewModels
                 (SubtractionCommand as DelegateCommand).RaiseCanExecuteChanged();
                 (MultiplicationCommand as DelegateCommand).RaiseCanExecuteChanged();
                 (DivisionCommand as DelegateCommand).RaiseCanExecuteChanged();
+                (UndoCommand as DelegateCommand).RaiseCanExecuteChanged();
+               // (SubmitCommand as DelegateCommand).RaiseCanExecuteChanged();
 
             }
 
         }
-        public IList<IOperation> OperationHistory { get; set; }
+
+        public IEnumerable<IOperation> OperationHistory
+        {
+            get { return _game.History; }
+        }
 
         // Internal helpers
         private int Op1 { get { return SelectedNumbers[0]; } }
@@ -146,23 +151,23 @@ namespace MvvmWebApiClient.ViewModels
             OnPropertyChanged(() => CurrentGame);
         }
 
-        private void OnAddition()
+        private void DoAddition()
         {
             ApplyOperation(new Operation(Op1, Op2, Operator.Addition));
         }
 
 
-        private void OnSubtraction()
+        private void DoSubtraction()
         {
             ApplyOperation(new Operation(Op1, Op2, Operator.Subtraction));
         }
 
-        private void OnMultiplication()
+        private void DoMultiplication()
         {
             ApplyOperation(new Operation(Op1, Op2, Operator.Multiplication));
         }
 
-        private void OnDivision()
+        private void DoDivision()
         {
             ApplyOperation(new Operation(Op1, Op2, Operator.Division));
         }

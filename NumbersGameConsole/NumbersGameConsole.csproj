@@ -58,9 +58,9 @@
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NumbersGameSdk\Numbers Game SDK.csproj">
+    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSDK.csproj">
       <Project>{bc4d0096-7745-4702-8c92-3303bb61aedc}</Project>
-      <Name>Numbers Game SDK</Name>
+      <Name>NumbersGameSDK</Name>
     </ProjectReference>
     <ProjectReference Include="..\Reference Algorithms\Reference Algorithms.csproj">
       <Project>{dfc1fa58-7832-4b62-9e5c-c95631135e05}</Project>
