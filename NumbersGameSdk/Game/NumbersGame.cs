@@ -76,7 +76,11 @@ namespace ScottLogic.NumbersGame.Game
         public void DoOperation(IOperation op) // int idx1, int idx2, Operator op, out int lhs, out int rhs)
         {
             int idx1 = _numbers.FindIndex(i => i == op.Lhs); // Index of first occurence of Lhs operand
-            int idx2 = _numbers.FindIndex(i => i == op.Rhs);
+
+            // BUG FIX!
+            int idx2 = (op.Lhs == op.Rhs)
+                ? _numbers.FindIndex(idx1+1, i => i == op.Rhs) // Gets the next occurence of the same value
+                : _numbers.FindIndex(i => i == op.Rhs);
 
             // We'll overwrite the value at idx1, and erase the value at idx2
             // If idx2 < idx1, when restoring, we'll be off by one

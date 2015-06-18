@@ -12,8 +12,11 @@ namespace ScottLogic.NumbersGameTests
         public void TwoOfTheSame()
         {
             var ng = new NumbersGame.Game.NumbersGame(new[] {2, 2, 10, 5, 75});
-            Assert.AreEqual(6,ng.NumberCount);
             var op = new Operation(2, 2, Operator.Multiplication);
+            ng.DoOperation(op);
+            Assert.Contains(4, ng.CurrentNumbers);
+            // Repeat using different indices for good measure
+            ng = new NumbersGame.Game.NumbersGame(new[] { 10, 2, 5, 2, 75 });
             ng.DoOperation(op);
             Assert.Contains(4, ng.CurrentNumbers);
 
