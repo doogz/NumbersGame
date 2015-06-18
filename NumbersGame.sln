@@ -3,22 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameSDK.Tests", "NumbersGameTests\NumbersGameSDK.Tests.csproj", "{85EF4237-8514-40AD-BA28-C3F3C8756D05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameSdk.Tests", "NumbersGameTests\NumbersGameSdk.Tests.csproj", "{85EF4237-8514-40AD-BA28-C3F3C8756D05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameConsole", "NumbersGameConsole\NumbersGameConsole.csproj", "{DA8BD95B-3052-4B1C-BB9A-0C47E08B619B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DFC1FA58-7832-4B62-9E5C-C95631135E05} = {DFC1FA58-7832-4B62-9E5C-C95631135E05}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameSDK", "NumbersGameSdk\NumbersGameSDK.csproj", "{BC4D0096-7745-4702-8C92-3303BB61AEDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameSdk", "NumbersGameSdk\NumbersGameSdk.csproj", "{BC4D0096-7745-4702-8C92-3303BB61AEDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reference Algorithms", "Reference Algorithms\Reference Algorithms.csproj", "{DFC1FA58-7832-4B62-9E5C-C95631135E05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceAlgorithms", "Reference Algorithms\ReferenceAlgorithms.csproj", "{DFC1FA58-7832-4B62-9E5C-C95631135E05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reference Algorithm Tests", "Reference Algorithm Tests\Reference Algorithm Tests.csproj", "{C58357C0-759D-40A5-A68A-CA898FFE7D15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceAlgorithms.Tests", "Reference Algorithm Tests\ReferenceAlgorithms.Tests.csproj", "{C58357C0-759D-40A5-A68A-CA898FFE7D15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speedfreak Solver", "Speedfreak Solver\Speedfreak Solver.csproj", "{543CE492-BA9D-4324-92D8-CB181486C4D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedfreakSolver", "Speedfreak Solver\SpeedfreakSolver.csproj", "{543CE492-BA9D-4324-92D8-CB181486C4D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speedfreak Tests", "Speedfreak Tests\Speedfreak Tests.csproj", "{1062F3BD-D8B7-424D-B325-0B5B66C980D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedfreakSolver.Tests", "Speedfreak Tests\SpeedfreakSolver.Tests.csproj", "{1062F3BD-D8B7-424D-B325-0B5B66C980D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameWebAPI", "NumbersGameWebAPI\NumbersGameWebAPI.csproj", "{877042E7-2B20-495F-BA99-EDEE05EF37EB}"
 EndProject

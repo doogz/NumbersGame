@@ -97,9 +97,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSDK.csproj">
+    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSdk.csproj">
       <Project>{BC4D0096-7745-4702-8C92-3303BB61AEDC}</Project>
-      <Name>NumbersGameSDK</Name>
+      <Name>NumbersGameSdk</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -24,7 +24,7 @@ namespace MvvmWebApiClient.ViewModels
         /// </summary>
         public ICommand NewGameCommand { get; private set; }
         public ICommand SubmitSolutionCommand { get; private set; }
-        public NumbersGameViewModel NumbersGameViewModel { get; set; }
+        public NumbersGameViewModel NumbersGameViewModel { get; private  set; }
 
 
         private async void OnNewGame()

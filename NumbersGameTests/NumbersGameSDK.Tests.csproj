@@ -52,9 +52,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSDK.csproj">
+    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSdk.csproj">
       <Project>{bc4d0096-7745-4702-8c92-3303bb61aedc}</Project>
-      <Name>NumbersGameSDK</Name>
+      <Name>NumbersGameSdk</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

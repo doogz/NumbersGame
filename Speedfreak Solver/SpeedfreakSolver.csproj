@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DFC1FA58-7832-4B62-9E5C-C95631135E05}</ProjectGuid>
+    <ProjectGuid>{543CE492-BA9D-4324-92D8-CB181486C4D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ScottLogic.NumbersGame.ReferenceAlgorithms</RootNamespace>
-    <AssemblyName>NumbersGameReferenceAlgorithms</AssemblyName>
+    <RootNamespace>SpeedFreak.NumberCrunch</RootNamespace>
+    <AssemblyName>SpeedFreak.NumberCrunch</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,15 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
-      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,24 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeepRecursiveUndoingSolver.cs" />
-    <Compile Include="ProgressiveRecursiveSolver.cs" />
+    <Compile Include="PossibilityExplorer.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="LinkedOperation.cs" />
+    <Compile Include="OperationsTree.cs" />
+    <Compile Include="Solver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSDK.csproj">
+    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSdk.csproj">
       <Project>{bc4d0096-7745-4702-8c92-3303bb61aedc}</Project>
-      <Name>NumbersGameSDK</Name>
+      <Name>NumbersGameSdk</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
