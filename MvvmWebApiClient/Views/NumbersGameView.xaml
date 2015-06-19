@@ -8,9 +8,10 @@
     <UserControl.Resources>
         <DataTemplate x:Key="NumberTileTemplate">
             <Border BorderThickness="4" BorderBrush="BurlyWood">
-                <TextBlock Width="40" Height="40" FontSize="24"
+                <TextBlock Width="60" Height="40" FontSize="24"
                            Foreground="Azure" Background="RoyalBlue"
                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,15,15,15"
+                           TextAlignment="Center"
                            Text="{Binding}"/>
             </Border>
         </DataTemplate>
@@ -37,12 +38,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Name="TargetNumber" FontSize="40"  HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="{Binding CurrentGame.Target}"/>
+        <Label Name="TargetNumber" FontSize="40"  HorizontalAlignment="Center" 
+               Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" 
+               
+               Content="{Binding CurrentGamePlayer.Target}"/>
 
         <ListBox Name="NumbersList"
             Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" 
             SelectionMode="Multiple" FontSize="24"
-            ItemsSource="{Binding CurrentGame.CurrentNumbers}"
+            ItemsSource="{Binding CurrentGamePlayer.CurrentNumbers}"
             ItemsPanel="{DynamicResource NumbersListItemsPanelTemplate}"
             ItemTemplate ="{StaticResource NumberTileTemplate}" SelectionChanged="NumbersList_SelectionChanged" >
 
@@ -77,7 +81,8 @@
         <Button Command="{Binding MultiplicationCommand}" FontSize="24" Grid.Column="3" Grid.Row="3">*</Button>
         <Button Command="{Binding DivisionCommand}" FontSize="24" Grid.Column="4" Grid.Row="3">/</Button>
         <Button Command="{Binding SubmitSolution}" FontSize="24" Grid.Column="5" Grid.Row="3" 
-                Visibility="{Binding UndoPossible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                Visibility="{Binding UndoPossible, Converter={StaticResource BooleanToVisibilityConverter}}">Undo</Button>
+        
             <!-- Certainly do-able, could have a listbox inside the undo button! -->
             <!-- <StackPanel>
                 <ListBox Name="UndoListBox" Visibility="{Binding MultiplePossibleUndos, 
@@ -85,7 +90,7 @@
                     <ListBoxItem>Undo</ListBoxItem>
                 </ListBox>
             </StackPanel> -->
-        </Button>
+        
 
 
     </Grid>

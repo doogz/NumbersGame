@@ -6,10 +6,11 @@ namespace ScottLogic.NumbersGame
     
     public static class GameGenerator
     {
+        private static Random Generator = new Random();
 
         public static bool GenerateCountdownGame(int bigNumbers, out int[] initialNumbers , out int target)
         {
-            target = new Random().Next(101,1000);
+            target = Generator.Next(101,1000);
             initialNumbers = new int[6];
 
             if (bigNumbers < 0 || bigNumbers > 4)
@@ -28,7 +29,7 @@ namespace ScottLogic.NumbersGame
         public static bool GenerateCountdownPlusGame(int bigNumbers, out int[] initialNumbers, out int target)
         {
             const int numbers = 7;
-            target = new Random().Next(1001, 100000); 
+            target = Generator.Next(1001, 100000); 
             initialNumbers = new int[numbers];
             if (bigNumbers < 0 || bigNumbers > 4)
                 return false;

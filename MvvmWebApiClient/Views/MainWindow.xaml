@@ -9,7 +9,7 @@
         xmlns:mvvm="clr-namespace:Microsoft.Practices.Prism.Mvvm;assembly=Microsoft.Practices.Prism.Mvvm.Desktop"
         Title="MainWindow" 
         Height="350" 
-        Width="525"
+        Width="766"
         d:DataContext="{d:DesignInstance wac:NumbersGameViewDesignViewModel, IsDesignTimeCreatable=True}"
         mvvm:ViewModelLocator.AutoWireViewModel="True">
 

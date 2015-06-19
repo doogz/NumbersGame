@@ -34,7 +34,7 @@ namespace MvvmWebApiClient.Services
                 }
             }
 
-            return new Puzzle(new int[] {}, 0);
+            return new Puzzle(new int[] {}, 999);
         }
     }
 }
