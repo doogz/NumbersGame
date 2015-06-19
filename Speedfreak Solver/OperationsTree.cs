@@ -109,8 +109,8 @@ namespace SpeedFreak.NumberCrunch
             //possibleOperations = new List<IOperation>();
             int[] values = currentState.Values;
             Array.Sort(values);
-            System.Console.Write("OperationsTree.Explore - sorted values =");
-            DumpArray(values);
+            //System.Console.Write("OperationsTree.Explore - sorted values =");
+          //  DumpArray(values);
 
 
             // Generate our combinations

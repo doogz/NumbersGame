@@ -33,14 +33,14 @@ namespace ScottLogic.NumbersGame.ReferenceAlgorithms
             
             while (_wip.Any())
             {
-                Console.WriteLine("PRSolver, number of games to look at : {0}", _wip.Count);
+                //Console.WriteLine("PRSolver, number of games to look at : {0}", _wip.Count);
 
                 // Process exactly the lists we had from the last iteration first
                 // That begins at 1, for the single initial gamePlayer
                 int lists = _wip.Count;
                 for (int idx = 0; idx < lists; ++idx)
                 {
-                    Console.WriteLine("PRSolver, Looking at gamePlayer: {0}", idx);
+                    //Console.WriteLine("PRSolver, Looking at gamePlayer: {0}", idx);
                     INumbersGamePlayer gamePlayer = _wip[idx];
                     if (gamePlayer.IsSolved)
                     {
@@ -51,7 +51,7 @@ namespace ScottLogic.NumbersGame.ReferenceAlgorithms
                     if (!gamePlayer.IsExhausted)
                     {
                         IList<INumbersGamePlayer> nextGames = gamePlayer.CreateAllDescendents();
-                        Console.WriteLine("Generates {0} descendent games", nextGames.Count);
+                        //Console.WriteLine("Generates {0} descendent games", nextGames.Count);
                         _wip.AddRange(nextGames);
                     }
                 }
@@ -62,7 +62,7 @@ namespace ScottLogic.NumbersGame.ReferenceAlgorithms
             solution = null;
             var t1 = System.DateTime.Now;
             var dt = t1 - t0;
-            Console.WriteLine("Exhausting the possibilities took {0} s {1} ms", dt.Seconds, dt.Milliseconds);
+            //Console.WriteLine("Exhausting the possibilities took {0} s {1} ms", dt.Seconds, dt.Milliseconds);
             return false;
     
         }

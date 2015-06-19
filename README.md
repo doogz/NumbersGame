@@ -17,7 +17,7 @@ be made configurable later on.
 
 We then have a Prism 5.0 MVVM WPF Desktop Client. The XAML is quite sophisticated (for a beginner!); our user
 control is using a data template, is entirely driven by data and command property binding, uses both
-static and dynamic resources, and makes of control template triggers.
+static and dynamic resources, and makes use of control template triggers to restyle
 
 The SDK and Console app are production-ready as are the reference implemetations; there's fairly thorough NUnit 
 tests for all. The ViewModel is not just for abstraction and separation of concerns; it enables most

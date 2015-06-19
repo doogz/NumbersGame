@@ -27,7 +27,9 @@ namespace ScottLogic.NumbersGame
             get { return _values; }
         }
 
-
+        // #Discuss: These attributes were recommended, but this stuff is in the SDK, and those attributes are recommended for the
+        // client application that is using it. I've sullied the API? Derive from this class inside the client and add the attributes there, perhaps
+        // the best way to deal with this properly - ?
         [DataMemberAttribute]
         public int TargetValue
         {
