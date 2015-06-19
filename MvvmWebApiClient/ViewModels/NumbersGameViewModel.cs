@@ -14,7 +14,7 @@ namespace MvvmWebApiClient.ViewModels
     {
         public NumbersGameViewModel()
         {
-            CurrentGame = new NumbersGame();
+            CurrentGamePlayer = new NumbersGamePlayer();
             AdditionCommand = new DelegateCommand(DoAddition, CanDoAddition);
             SubtractionCommand = new DelegateCommand(DoSubtraction, CanDoSubtraction);
             MultiplicationCommand = new DelegateCommand(DoMultiplication, CanDoMultiplication);
@@ -30,7 +30,7 @@ namespace MvvmWebApiClient.ViewModels
         public NumbersGameViewModel(bool designMode)
             : this()
         {
-            CurrentGame = new NumbersGame(new[] {100, 25, 10, 7, 5, 2}, 715);
+            CurrentGamePlayer = new NumbersGamePlayer(new[] {100, 25, 10, 7, 5, 2}, 715);
         }
 
         // Our commands (public properties)
@@ -43,10 +43,10 @@ namespace MvvmWebApiClient.ViewModels
 
 
         // Properties
-        public INumbersGame CurrentGame
+        public INumbersGamePlayer CurrentGamePlayer
         {
-            get { return _game; }
-            set { SetProperty(ref _game, value); }
+            get { return _gamePlayer; }
+            set { SetProperty(ref _gamePlayer, value); }
         }
 
         public bool MultiplePossibleUndos
@@ -94,7 +94,7 @@ namespace MvvmWebApiClient.ViewModels
 
         public IEnumerable<IOperation> OperationHistory
         {
-            get { return _game.History; }
+            get { return _gamePlayer.History; }
         }
 
         // Internal helpers
@@ -135,20 +135,20 @@ namespace MvvmWebApiClient.ViewModels
         }
         
 
-        private INumbersGame _game;
+        private INumbersGamePlayer _gamePlayer;
         private readonly ObservableCollection<int> _selectedNumbers = new ObservableCollection<int>(); 
 
         // Command implementations (all private)
 
         private void ApplyOperation(IOperation op)
         {
-            _game.DoOperation(op);
+            _gamePlayer.DoOperation(op);
             SelectedNumbers = new int[] { };
 
-            // OnPropertyChanged("CurrentGame");
+            // OnPropertyChanged("CurrentGamePlayer");
             
             // Prism BindableBase also provides this, it's type-safer
-            OnPropertyChanged(() => CurrentGame);
+            OnPropertyChanged(() => CurrentGamePlayer);
         }
 
         private void DoAddition()
@@ -174,8 +174,8 @@ namespace MvvmWebApiClient.ViewModels
 
         private void UndoLastOperation()
         {
-            _game.UndoOperation();
-            OnPropertyChanged( () =>CurrentGame);
+            _gamePlayer.UndoOperation();
+            OnPropertyChanged( () =>CurrentGamePlayer);
         }
         
         

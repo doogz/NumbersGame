@@ -19,7 +19,7 @@
         /// Returns false if no solution to be found, and true otherwise.
         /// </summary>
         /// <param name="inputNumbers">An unsorted array of numbers representing the starting numbers</param>
-        /// <param name="target">The target of this numbers game</param>
+        /// <param name="target">The target of this numbers gamePlayer</param>
         /// <param name="solution">Receives solution</param>
         /// <returns>Returns true if a solution was found, false otherwise</returns>
         bool GetSolution(int[] inputNumbers, int target, out ISolution solution);

@@ -30,39 +30,39 @@ namespace ScottLogic.NumbersGame.ReferenceAlgorithms
 #endif
         public bool GetSolution(int[] inputNumbers, int target, out ISolution solution)
         {
-            var initialNumbers = new Game.NumbersGame(inputNumbers, target);
+            var initialNumbers = new Game.NumbersGamePlayer(inputNumbers, target);
             return GetSolution(initialNumbers, out solution);
         }
 
-        private bool GetSolution(Game.NumbersGame game, out ISolution solution)
+        private bool GetSolution(Game.NumbersGamePlayer gamePlayer, out ISolution solution)
         {
             var timer = Stopwatch.StartNew();
-            bool solved = Solve(game);
-            solution = new Solution(game.History);
+            bool solved = Solve(gamePlayer);
+            solution = new Solution(gamePlayer.History);
             return solved;
         }
 
 
-        private bool Solve(Game.NumbersGame game)
+        private bool Solve(Game.NumbersGamePlayer gamePlayer)
         {
-            if (game.IsSolved) return true;
+            if (gamePlayer.IsSolved) return true;
 
-            int numbers = game.NumberCount;
+            int numbers = gamePlayer.NumberCount;
             int maxIdx0 = numbers - 1;
             for (int idx0 = 0; idx0 < maxIdx0; ++idx0)
             {
-                int n1 = game.GetNumber(idx0);
+                int n1 = gamePlayer.GetNumber(idx0);
                 for (int idx1 = idx0 + 1; idx1 < numbers; ++idx1)
                 {
-                    int n2 = game.GetNumber(idx1);
+                    int n2 = gamePlayer.GetNumber(idx1);
                     foreach (Operator op in Enum.GetValues(typeof (Operator)))
                     {
                         if (Operation.IsValid(n1, n2, op))
                         {
-                            game.DoOperation(new Operation(n1, n2, op));
-                            if (game.IsSolved) return true;
-                            if (game.NumberCount >= 2 && Solve(game)) return true;
-                            game.UndoOperation();
+                            gamePlayer.DoOperation(new Operation(n1, n2, op));
+                            if (gamePlayer.IsSolved) return true;
+                            if (gamePlayer.NumberCount >= 2 && Solve(gamePlayer)) return true;
+                            gamePlayer.UndoOperation();
                         }
                     }
 

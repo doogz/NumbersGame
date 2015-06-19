@@ -43,7 +43,7 @@ namespace ScottLogic.NumbersGame
         /// </summary>
         public string GetMultilineDisplayString()
         {
-            // There are only a few steps (five or less in the official game with 6 numbers), 
+            // There are only a few steps (five or less in the official gamePlayer with 6 numbers), 
             // so this multiple concatenation isn't too bad in itself, especially with a string builder.
             // But, IOperation.DisplayString (which it calls) is already a property that does a bit of work (string concatenation).
             // This being the case, this is defined as a Method rather than a Property.

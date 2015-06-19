@@ -15,6 +15,6 @@ namespace ScottLogic.NumbersGame.Competition
         int CompetitionNumber { get; }
         int ChallengeNumber { get; }
         int NumberGames { get; }
-        INumbersGame GetGame(int index);
+        INumbersGamePlayer GetGame(int index);
     }
 }

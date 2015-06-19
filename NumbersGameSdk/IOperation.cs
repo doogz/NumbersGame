@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// IOperation represents the combination of two numbers with an appropriate operator to yield a result.
-    /// Each operation therefore consumes two numbers and generates one new one.
+    /// Each operation consumes two numbers and generates a new one.
     /// </summary>
     public interface IOperation
     {

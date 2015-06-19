@@ -3,7 +3,7 @@
 namespace ScottLogic.NumbersGame
 {
     /// <summary>
-    /// ISolution represents the description of a correctly-solved numbers game.
+    /// ISolution represents the description of a correctly-solved numbers gamePlayer.
     /// It supports read-only access to an indexed list of operations, modeled by IOperation,
     /// and provides some additional details of the solution via a few properties.
     /// </summary>

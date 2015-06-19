@@ -5,7 +5,7 @@ using System.Reflection;
 namespace ScottLogic.NumbersGame
 {
     /// <summary>
-    /// Encapsulates an immutable operation combining two numbers with an operator, and used to track the history of a game.
+    /// Encapsulates an immutable operation combining two numbers with an operator, and used to track the history of a gamePlayer.
     
     /// Note: it's small (12bytes), immutable, not intended to participate in class hierarchies, and therefore a candidate struct.
     /// After some performance testing, the current choice of struct was strongly justified:
@@ -34,7 +34,7 @@ namespace ScottLogic.NumbersGame
 
         public Operation(int i, int j, Operator op) : this() //*** Needed IFF struct impl
         {
-            // First operand must be >= second in all cases; operators - and / demand it so (within the rules of the game)
+            // First operand must be >= second in all cases; operators - and / demand it so (within the rules of the gamePlayer)
             bool firstBigger = i > j;
             Lhs = firstBigger ? i : j;
             Rhs = firstBigger ? j : i;

@@ -11,12 +11,12 @@ namespace ScottLogic.NumbersGameTests
         [Test]
         public void TwoOfTheSame()
         {
-            var ng = new NumbersGame.Game.NumbersGame(new[] {2, 2, 10, 5, 75});
+            var ng = new NumbersGame.Game.NumbersGamePlayer(new[] {2, 2, 10, 5, 75});
             var op = new Operation(2, 2, Operator.Multiplication);
             ng.DoOperation(op);
             Assert.Contains(4, ng.CurrentNumbers);
             // Repeat using different indices for good measure
-            ng = new NumbersGame.Game.NumbersGame(new[] { 10, 2, 5, 2, 75 });
+            ng = new NumbersGame.Game.NumbersGamePlayer(new[] { 10, 2, 5, 2, 75 });
             ng.DoOperation(op);
             Assert.Contains(4, ng.CurrentNumbers);
 
@@ -25,7 +25,7 @@ namespace ScottLogic.NumbersGameTests
         public void Undo()
         {
             int[] initVars = {1,2,3,4,5};
-            var ng = new NumbersGame.Game.NumbersGame(initVars);
+            var ng = new NumbersGame.Game.NumbersGamePlayer(initVars);
             Assert.AreEqual(ng.NumberCount,5);
 
             var op = new Operation(4, 2, Operator.Subtraction);
@@ -46,7 +46,7 @@ namespace ScottLogic.NumbersGameTests
         public void AlreadySolved()
         {
             int[] initVars = {1};
-            var game = new NumbersGame.Game.NumbersGame(initVars,1);
+            var game = new NumbersGame.Game.NumbersGamePlayer(initVars,1);
             Assert.AreEqual(true, game.IsSolved);
         }
 
@@ -54,7 +54,7 @@ namespace ScottLogic.NumbersGameTests
         public void OneMoveAway()
         {
             int[] initVars = {1, 2};
-            var game = new NumbersGame.Game.NumbersGame(initVars, 3);
+            var game = new NumbersGame.Game.NumbersGamePlayer(initVars, 3);
             Assert.AreEqual(false, game.IsSolved);
 
             var op = new Operation(1, 2, Operator.Addition);

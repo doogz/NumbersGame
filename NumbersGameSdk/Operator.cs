@@ -3,7 +3,7 @@
 namespace ScottLogic.NumbersGame
 {
     /// <summary>
-    /// 'Operator' enumerates the (4) different kinds of mathematical operation that can be used in our game.
+    /// 'Operator' enumerates the (4) different kinds of mathematical operation that can be used in our gamePlayer.
     /// As far as the official Countdown rules go, these are never going to change.
     /// </summary>
     public enum Operator

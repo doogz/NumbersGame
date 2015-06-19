@@ -28,7 +28,7 @@ namespace ScottLogic.NumbersGame.Console
                 foreach (var d in descriptions) System.Console.WriteLine("{0}", d);
                 System.Console.WriteLine("\r\nMenu:\r\n");
                 System.Console.WriteLine("S: Select Solver");
-                System.Console.WriteLine("P: Play the game manually");
+                System.Console.WriteLine("P: Play the gamePlayer manually");
                 System.Console.WriteLine("T: Test algorithms for completeness");
                 System.Console.WriteLine("C: Run the competition");
                 System.Console.WriteLine("Q: Quit the console");

@@ -29,15 +29,14 @@ namespace MvvmWebApiClient.ViewModels
 
         private async void OnNewGame()
         {
-            Definition gameDefinition = await _webService.GetNextGameAsync();
-            var game = new NumbersGame(gameDefinition.StartingValues,
-                gameDefinition.Target);
-            NumbersGameViewModel.CurrentGame = game;
-            
+            Puzzle puzzle = await _webService.GetNextGameAsync();
+            var game = new NumbersGamePlayer(puzzle.StartingValues, puzzle.TargetValue);
+            NumbersGameViewModel.CurrentGamePlayer = game;
         }
+
         private void OnSubmitSolution()
         {
-            var solution = new Solution(NumbersGameViewModel.CurrentGame.History);
+            var solution = new Solution(NumbersGameViewModel.CurrentGamePlayer.History);
 
         }
 

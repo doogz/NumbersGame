@@ -6,7 +6,7 @@ using ScottLogic.NumbersGame.Game;
 namespace ScottLogic.NumbersGame.ReferenceAlgorithms
 {
     /// <summary>
-    /// Implements a game solver (ISolutionProvider) based on a progressively deeper "brute force" approach.
+    /// Implements a gamePlayer solver (ISolutionProvider) based on a progressively deeper "brute force" approach.
     /// Every valid operation between every pair of numbers is tried in turn, and the process is applied recursively.
     /// From the initial starting point, a set of possible descendent games is generated; if any of these are solved, we are done.
     /// Games that aren't solved generate new descendent games, and these are added to a queue.
@@ -17,40 +17,40 @@ namespace ScottLogic.NumbersGame.ReferenceAlgorithms
     /// </summary>
     public class ProgressiveRecursiveSolver : ISolutionProvider
     {
-        private readonly List<INumbersGame> _wip = new List<INumbersGame>(60); // work in progress
+        private readonly List<INumbersGamePlayer> _wip = new List<INumbersGamePlayer>(60); // work in progress
 
         public bool GetSolution(int[] inputNumbers, int target, out ISolution solution)
         {
-            var initialNumbers = new Game.NumbersGame(inputNumbers) {Target = target};
+            var initialNumbers = new Game.NumbersGamePlayer(inputNumbers) {Target = target};
             return GetSolution(initialNumbers, out solution);
         }
 
-        private bool GetSolution(Game.NumbersGame initialGame, out ISolution solution)
+        private bool GetSolution(Game.NumbersGamePlayer initialGamePlayer, out ISolution solution)
         {
             var t0 = DateTime.Now;
 
-            _wip.Add(initialGame);
+            _wip.Add(initialGamePlayer);
             
             while (_wip.Any())
             {
                 Console.WriteLine("PRSolver, number of games to look at : {0}", _wip.Count);
 
                 // Process exactly the lists we had from the last iteration first
-                // That begins at 1, for the single initial game
+                // That begins at 1, for the single initial gamePlayer
                 int lists = _wip.Count;
                 for (int idx = 0; idx < lists; ++idx)
                 {
-                    Console.WriteLine("PRSolver, Looking at game: {0}", idx);
-                    INumbersGame game = _wip[idx];
-                    if (game.IsSolved)
+                    Console.WriteLine("PRSolver, Looking at gamePlayer: {0}", idx);
+                    INumbersGamePlayer gamePlayer = _wip[idx];
+                    if (gamePlayer.IsSolved)
                     {
-                        solution = new Solution(game.History);
+                        solution = new Solution(gamePlayer.History);
                         return true;
                     }
 
-                    if (!game.IsExhausted)
+                    if (!gamePlayer.IsExhausted)
                     {
-                        IList<INumbersGame> nextGames = game.CreateAllDescendents();
+                        IList<INumbersGamePlayer> nextGames = gamePlayer.CreateAllDescendents();
                         Console.WriteLine("Generates {0} descendent games", nextGames.Count);
                         _wip.AddRange(nextGames);
                     }

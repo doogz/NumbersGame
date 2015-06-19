@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
-using NumbersGameWebAPI.Models;
-using ScottLogic.NumbersGame.Game;
+using ScottLogic.NumbersGame;
 
 namespace NumbersGameWebAPI.Controllers
 {
     [RoutePrefix("api/games")]
     public class GamesController : ApiController
     {
+        private readonly PuzzleRepository _puzzleRespository = new PuzzleRepository();
         // GET: api/Games
         [Route("")]
-        public IEnumerable<Definition> GetAllGames()
+        public IEnumerable<IPuzzle> GetAllGames()
         {
-            return GameDefinition.Repository;
+            return _puzzleRespository.GetAllPuzzles();
         }
 
         // GET: api/Games/{id}
         [Route("{id:int}")]
-        public Definition GetGame(int id)
+        public IPuzzle GetGame(int id)
         {
-            var game = GameDefinition.Repository.Find(g => g.GameId == id);
+            var game = _puzzleRespository.GetPuzzle(id);
             return game;
         }
 

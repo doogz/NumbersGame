@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ScottLogic.NumbersGame.Game
 {
+    /*
     public class Definition
     {
         public int GameId { get; set; }
@@ -14,4 +15,5 @@ namespace ScottLogic.NumbersGame.Game
         public int[] StartingValues { get; set; }
         public int Target { get; set; }
     }
+     * */
 }

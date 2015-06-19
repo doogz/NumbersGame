@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using MvvmWebApiClient.ViewModels;
-using ScottLogic.NumbersGame.Game;
+using ScottLogic.NumbersGame;
 
 namespace MvvmWebApiClient.Services
 {
@@ -11,9 +12,11 @@ namespace MvvmWebApiClient.Services
     {
         private int _nextGameId;
 
-        public async Task<Definition> GetNextGameAsync()
+        public async Task<Puzzle> GetNextGameAsync()
         {
             ++_nextGameId;
+            _nextGameId %= 25;
+
             string uri = string.Format("api/games/{0}", _nextGameId);
 
             using (var client = new HttpClient())
@@ -25,13 +28,13 @@ namespace MvvmWebApiClient.Services
                 HttpResponseMessage response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    Definition gameDefinition =
-                        await response.Content.ReadAsAsync<Definition>();
-                    return gameDefinition;
+                    Puzzle puzzle =
+                        await response.Content.ReadAsAsync<Puzzle>();
+                    return puzzle;
                 }
             }
 
-            return new Definition();
+            return new Puzzle(new int[] {}, 0);
         }
     }
 }
