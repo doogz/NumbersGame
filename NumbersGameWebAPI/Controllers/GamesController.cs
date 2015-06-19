@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using ScottLogic.NumbersGame;
+using ScottLogic.NumbersGame.Game;
 
 namespace NumbersGameWebAPI.Controllers
 {
@@ -29,6 +30,7 @@ namespace NumbersGameWebAPI.Controllers
         [Route("{id:int}")]
         public Puzzle GetGame(int id)
         {
+            
             var game = _repo.GetPuzzle(id);
             return game;
         }
@@ -37,9 +39,17 @@ namespace NumbersGameWebAPI.Controllers
         // CHECK api/games/{id}/{solution}
         [AcceptVerbs("CHECK")]
         [Route("{id:int}/{solution}")]
-        public bool CheckGame(int id, string solution)
+        public bool CheckGame(int id, ISolution solution)
         {
-            return true;
+            var puzzle = GetGame(id);
+
+            var player = new NumbersGamePlayer(puzzle.StartingValues, puzzle.TargetValue);
+            for (int n=0; n<solution.NumberOfOperations; ++n)
+            {
+                player.DoOperation(solution[n]);
+            }
+
+            return player.IsSolved;
         }
         
 
