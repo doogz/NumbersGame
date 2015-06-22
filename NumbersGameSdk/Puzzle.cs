@@ -4,16 +4,13 @@ using ScottLogic.NumbersGame;
 
 namespace ScottLogic.NumbersGame
 {
-    [DataContract]
+    // [DataContract]
     public class Puzzle : IPuzzle
     {
         private readonly List<int> _values = new List<int>();
-        private readonly int _target;
-
-        public Puzzle()
-        {
-            _target = 555;
-        }
+        private int _target;
+        private Puzzle()
+        { }
         public Puzzle(IEnumerable<int> startingValues, int target)
         {
             _values.Clear();
@@ -21,19 +18,25 @@ namespace ScottLogic.NumbersGame
             _target = target;
         }
 
-        [DataMemberAttribute]
+        // [DataMemberAttribute]
         public IEnumerable<int> StartingValues 
         {
             get { return _values; }
+            set
+            {
+                _values.Clear();
+                _values.AddRange(value);
+            }
         }
 
         // #Discuss: These attributes were recommended, but this stuff is in the SDK, and those attributes are recommended for the
         // client application that is using it. I've sullied the API? Derive from this class inside the client and add the attributes there, perhaps
         // the best way to deal with this properly - ?
-        [DataMemberAttribute]
+        // [DataMemberAttribute]
         public int TargetValue
         {
             get { return _target; }
+            set { _target = value; }
         }
     }
 }

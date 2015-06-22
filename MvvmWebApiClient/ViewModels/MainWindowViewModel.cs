@@ -29,7 +29,7 @@ namespace MvvmWebApiClient.ViewModels
 
         private async void OnNewGame()
         {
-            Puzzle puzzle = await _webService.GetNextGameAsync();
+            IPuzzle puzzle = await _webService.GetNextGameAsync();
             var game = new NumbersGamePlayer(puzzle.StartingValues, puzzle.TargetValue);
             NumbersGameViewModel.CurrentGamePlayer = game;
         }

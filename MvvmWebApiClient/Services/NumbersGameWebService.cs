@@ -12,7 +12,7 @@ namespace MvvmWebApiClient.Services
     {
         private int _nextGameId;
 
-        public async Task<Puzzle> GetNextGameAsync()
+        public async Task<IPuzzle> GetNextGameAsync()
         {
             ++_nextGameId;
             _nextGameId %= 25;

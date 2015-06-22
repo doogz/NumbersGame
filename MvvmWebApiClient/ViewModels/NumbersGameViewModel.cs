@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using System.Diagnostics;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using ScottLogic.NumbersGame;
@@ -39,8 +40,6 @@ namespace MvvmWebApiClient.ViewModels
         public ICommand MultiplicationCommand { get; private set; }
         public ICommand DivisionCommand { get; private set; }
         public ICommand UndoCommand { get; private set; }
-        //public ICommand SubmitCommand { get; private set; }
-
 
         // Properties
         public INumbersGamePlayer CurrentGamePlayer
@@ -59,10 +58,6 @@ namespace MvvmWebApiClient.ViewModels
             get { return OperationHistory.Any(); }
         }
 
-        private bool CanUndo()
-        {
-            return UndoPossible;
-        }
 
         public IList<int> SelectedNumbers
         {
@@ -73,7 +68,7 @@ namespace MvvmWebApiClient.ViewModels
                 foreach (var v in value)
                     _selectedNumbers.Add(v);
 
-                // So far, this ISN'T enough for things to just work.
+                
 
 
                 // And this doesn't do it...
@@ -110,12 +105,20 @@ namespace MvvmWebApiClient.ViewModels
 
         private bool CanDoAddition()
         {
+            Debug.WriteLine("Checking CanDoAddition...");
             return OperationPossible;
         }
         private bool CanDoSubtraction()
         {
+            Debug.WriteLine("Checking CanDoSubtraction...");
             // We never care about the order of operands but we do care if they're the same - we aren't permitted to use zeros
             return (OperationPossible && Op1 != Op2);
+        }
+
+        private bool CanUndo()
+        {
+            Debug.WriteLine("Checking CanUndo (last operation)...");
+            return UndoPossible;
         }
 
         private bool CanDoMultiplication()

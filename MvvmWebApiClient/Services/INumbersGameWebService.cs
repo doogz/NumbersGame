@@ -10,6 +10,6 @@ namespace MvvmWebApiClient.Services
     /// </summary>
     public interface INumbersGameWebService
     {
-        Task<Puzzle> GetNextGameAsync();
+        Task<IPuzzle> GetNextGameAsync();
     }
 }
