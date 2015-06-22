@@ -65,7 +65,7 @@ namespace NumbersGameWebAPI
 
             // Suppport DI for repository - for now, we're mocking the database in-memory
             var container = new UnityContainer();
-            container.RegisterType<IPuzzleRepository, MockPuzzleRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IPuzzleRepository, MockPuzzleRepository>(new ContainerControlledLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
 
             
