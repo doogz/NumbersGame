@@ -28,7 +28,8 @@ namespace ScottLogic.NumbersGame.Console
                 foreach (var d in descriptions) System.Console.WriteLine("{0}", d);
                 System.Console.WriteLine("\r\nMenu:\r\n");
                 System.Console.WriteLine("S: Select Solver");
-                System.Console.WriteLine("P: Play the gamePlayer manually");
+                System.Console.WriteLine("P: Play the game using the selected solver");
+                System.Console.WriteLine("L: Look for all solutions");
                 System.Console.WriteLine("T: Test algorithms for completeness");
                 System.Console.WriteLine("C: Run the competition");
                 System.Console.WriteLine("Q: Quit the console");
@@ -45,6 +46,10 @@ namespace ScottLogic.NumbersGame.Console
                         case "P":
                             PlayGame();
                             break;
+                        case "L":
+                            LookForSolutions();
+                            break;
+
                         case "T":
                             TestAlgorithms();
                             break;
@@ -221,14 +226,8 @@ namespace ScottLogic.NumbersGame.Console
                 int target;
                 if (GetNumbersFromConsole(out numbers, out target))
                 {
-                    System.Console.Write("The numbers are: [ ");
-                    for (int idx = 0; idx < numbers.Length; ++idx)
-                    {
-                        System.Console.Write("{0}", numbers[idx]);
-                        if (idx < numbers.Length - 1)
-                            System.Console.Write(", ");
-                    }
-                    System.Console.WriteLine(" ]");
+                    System.Console.Write("The numbers are:");
+                    DumpNumbers(numbers);
                     System.Console.WriteLine("Target: {0}", target);
 
                     var solver = SolverFactory.CreateSolver(_defaultSolver);
@@ -253,6 +252,64 @@ namespace ScottLogic.NumbersGame.Console
                 }
             }
 
+        }
+
+        private static void DumpNumbers(int[] numbers)
+        {
+
+            System.Console.Write("[ ");
+            for (int idx = 0; idx < numbers.Length; ++idx)
+            {
+                System.Console.Write("{0}", numbers[idx]);
+                if (idx < numbers.Length - 1)
+                    System.Console.Write(", ");
+            }
+            System.Console.WriteLine(" ]");
+        }
+
+        public static void LookForSolutions()
+        {
+            System.Console.WriteLine("This time, we're going to look for ALL solutions.");
+            System.Console.WriteLine("Enter your numbers, at a time, or together separated by commas.");
+            System.Console.WriteLine("You can also specify the target after '=', or enter it separately.");
+
+            while (true)
+            {
+                int[] numbers;
+                int target;
+                if (GetNumbersFromConsole(out numbers, out target))
+                {
+                    System.Console.Write("The numbers are:");
+                    DumpNumbers(numbers);
+                    System.Console.WriteLine("Target: {0}", target);
+
+                    var solver = SolverFactory.CreateSolver(_defaultSolver);
+                    var sw = new Stopwatch();
+                    sw.Start();
+                    ISolution[] solutions;
+                    bool solved = solver.GetAllSolutions(numbers, target, out solutions);
+                    sw.Stop();
+                    if (solved)
+                    {
+                        for (int n = 0; n < solutions.Length; ++n)
+                        {
+                            System.Console.WriteLine("Solution #{0}", n + 1);
+                            System.Console.WriteLine("------------");
+                            System.Console.WriteLine();
+                            System.Console.WriteLine(solutions[n].GetMultilineDisplayString());
+                        }
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Not solvable, exhausted possibilities in {0}s",
+                            sw.Elapsed.TotalSeconds);
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
 
         //TODO: Refactor - overly long method

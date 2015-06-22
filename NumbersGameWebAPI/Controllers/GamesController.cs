@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using ScottLogic.NumbersGame;
 using ScottLogic.NumbersGame.Game;
@@ -9,9 +10,9 @@ namespace NumbersGameWebAPI.Controllers
     public class GamesController : ApiController
     {
         private readonly IPuzzleRepository _repo;
-        
+
         /// <summary>
-        /// Constructor requiring repository - supplied via DI
+        /// Constructor requiring repository - supplied via DI using Unity. See WebApiConfig.cs for details.
         /// </summary>
         /// <param name="repo"></param>
         public GamesController(IPuzzleRepository repo)
@@ -19,7 +20,13 @@ namespace NumbersGameWebAPI.Controllers
             _repo = repo;
         }
 
+
         // GET: api/Games
+
+        /// <summary>
+        /// Gets the complete set of game puzzles on the server - this could be rather a lot!!
+        /// </summary>
+        /// <returns>An enumerable collection of puzzles</returns>
         [Route("")]
         public IEnumerable<Puzzle> GetAllGames()
         {
@@ -27,32 +34,39 @@ namespace NumbersGameWebAPI.Controllers
         }
 
         // GET: api/Games/{id}
+        /// <summary>
+        /// Gets the game puzzle from the server by specific id
+        /// </summary>
+        /// <returns>A puzzle instance</returns>
+
         [Route("{id:int}")]
         public Puzzle GetGame(int id)
         {
-            
+
             var game = _repo.GetPuzzle(id);
             return game;
         }
 
-        
+        // REVEAL: api/games/{id}
+
+        /// <summary>
+        /// Gets a solution for the specified game from the server. This is for when a user "gives up" and wants to see how it's done.
+        /// </summary>
+        /// <returns>An object supporting the ISolution interface, describing a valid solution</returns>
+
         // CHECK api/games/{id}/{solution}
-        [AcceptVerbs("CHECK")]
-        [Route("{id:int}/{solution}")]
-        public bool CheckGame(int id, ISolution solution)
+        [AcceptVerbs("REVEAL")]
+        [Route("{id:int}")]
+        public ISolution RevealGame(int id)
         {
             var puzzle = GetGame(id);
-
-            var player = new NumbersGamePlayer(puzzle.StartingValues, puzzle.TargetValue);
-            for (int n=0; n<solution.NumberOfOperations; ++n)
+            var solver = SolverFactory.CreateSolver(); // the default
+            ISolution sol;
+            if (solver.GetSolution(puzzle.StartingValues.ToArray(), puzzle.TargetValue, out sol))
             {
-                player.DoOperation(solution[n]);
+                return sol;
             }
-
-            return player.IsSolved;
+            return null;
         }
-        
-
-
     }
 }

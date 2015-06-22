@@ -34,7 +34,12 @@ namespace SpeedFreak.NumberCrunch
 
         public bool GetShortestSolution(int[] inputNumbers, int target, out ISolution solution)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public bool GetAllSolutions(int[] inputNumbers, int target, out ISolution[] solutions)
+        {
+            throw new NotImplementedException();
         }
     }
 }

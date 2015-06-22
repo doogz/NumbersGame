@@ -105,12 +105,9 @@ namespace SpeedFreak.NumberCrunch
 
         public bool Explore(IOperation parent, IGameState currentState, int target, IList<IOperation> operations)
         {
-            // Get sorted list of values; we use the fact it's sorted to skip duplicates on the fly, as follows.
-            //possibleOperations = new List<IOperation>();
+            // Get sorted list of values; we use the fact it's sorted to skip duplicates on the fly
             int[] values = currentState.Values;
             Array.Sort(values);
-            //System.Console.Write("OperationsTree.Explore - sorted values =");
-          //  DumpArray(values);
 
 
             // Generate our combinations
@@ -121,7 +118,7 @@ namespace SpeedFreak.NumberCrunch
                 // For n2, start looking from the next index up. 
                 int i2 = i1 + 1;
                 // Check for repeated values.
-                // Regardless of how many instances of a value we have, we can combine it with itself in the same three ways,
+                // Regardless of how many instances of a value we have, we can combine a value with itself in the same three ways,
                 // n+n, n/n and n*n (but not n-n, as that yields an illegal zero)
                 if (values[i2] == n1)
                 {

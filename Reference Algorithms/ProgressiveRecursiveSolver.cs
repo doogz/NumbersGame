@@ -73,6 +73,11 @@ namespace ScottLogic.NumbersGame.ReferenceAlgorithms
             throw new NotImplementedException();
         }
 
+        public bool GetAllSolutions(int[] inputNumbers, int target, out ISolution[] solutions)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
 

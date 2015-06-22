@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ScottLogic.NumbersGame.ReferenceAlgorithms
 {
@@ -70,6 +72,57 @@ namespace ScottLogic.NumbersGame.ReferenceAlgorithms
             }
             return false;
         }
+
+        private List<ISolution> _solutions = new List<ISolution>();
+
+        public bool GetAllSolutions(int[] inputNumbers, int target, out ISolution[] solutions)
+        {
+            _solutions.Clear();
+            var gamePlayer = new Game.NumbersGamePlayer(inputNumbers, target);
+            GetSolutions(gamePlayer, out solutions);
+            return solutions.Any();
+        }
+
+        private void GetSolutions(Game.NumbersGamePlayer gamePlayer, out ISolution[] solutions)
+        {
+            int numbers = gamePlayer.NumberCount;
+            int maxIdx0 = numbers - 1;
+            for (int idx0 = 0; idx0 < maxIdx0; ++idx0)
+            {
+                int n1 = gamePlayer.GetNumber(idx0);
+                for (int idx1 = idx0 + 1; idx1 < numbers; ++idx1)
+                {
+                    int n2 = gamePlayer.GetNumber(idx1);
+                    foreach (Operator op in Enum.GetValues(typeof (Operator)))
+                    {
+                        if (Operation.IsValid(n1, n2, op) && !gamePlayer.IsSolved)
+                        {
+                            gamePlayer.DoOperation(new Operation(n1, n2, op));
+                            // If this is the operation that solves our game, we want the solution
+                            if (gamePlayer.IsSolved)
+                            {
+                                var sol = new Solution(gamePlayer.History);
+                                _solutions.Add(sol);
+                            }
+                            // But it it didn't sove our game, we need to recurse
+                            else if (gamePlayer.NumberCount >= 2)
+                            {
+                                GetSolutions(gamePlayer, out solutions);
+                            }
+                            // Either way, we always undo our operation before trying another (within a given call of this method)
+                            gamePlayer.UndoOperation();
+                        }
+                    }
+
+                }
+            }
+            solutions = _solutions.ToArray();
+        }
+
+
+
+
+
         public bool GetShortestSolution(int[] inputNumbers, int target, out ISolution solution)
         {
             throw new NotImplementedException();

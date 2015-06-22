@@ -33,5 +33,15 @@
         /// <param name="solution"></param>
         /// <returns>Returns true if a solution was found, false otherwise</returns>
         bool GetShortestSolution(int[] inputNumbers, int target, out ISolution solution);
+
+        /// <summary>
+        /// Gets all possible solutions to the puzzle. Returns false if no solution can be found.
+        /// </summary>
+        /// <param name="inputNumbers">The starting numbers</param>
+        /// <param name="target">The target to reach</param>
+        /// <param name="solutions">An output array of ISolution interface references</param>
+        /// <returns></returns>
+        bool GetAllSolutions(int[] inputNumbers, int target, out ISolution[] solutions);
+
     }
 }
