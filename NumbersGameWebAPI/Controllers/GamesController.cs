@@ -35,7 +35,7 @@ namespace NumbersGameWebAPI.Controllers
 
         // GET: api/Games/{id}
         /// <summary>
-        /// Gets the game puzzle from the server by specific id
+        /// Gets the game puzzle from the server by specific id - TODO: Change the meaning of the ID to be 'Complexity'
         /// </summary>
         /// <returns>A puzzle instance</returns>
 
@@ -46,6 +46,23 @@ namespace NumbersGameWebAPI.Controllers
             var game = _repo.GetPuzzle(id);
             return game;
         }
+        
+        
+        // SUBMIT api/games/{id}/{solution}
+        
+        /// <summary>
+        /// Submit a solution to solve the given game
+        /// </summary>
+        /// <returns>Boolea indicating whether submitted solution actually solved puzzle</returns>
+        [AcceptVerbs("SUBMIT")]
+        [Route("{id:int}/{solution:ISolution}")]
+        public Puzzle SubmitSolution(int id, ISolution solution)
+        {
+            var game = _repo.GetPuzzle(id);
+            return game;
+        }
+        
+
 
         // REVEAL: api/games/{id}
 
@@ -54,7 +71,7 @@ namespace NumbersGameWebAPI.Controllers
         /// </summary>
         /// <returns>An object supporting the ISolution interface, describing a valid solution</returns>
 
-        // CHECK api/games/{id}/{solution}
+
         [AcceptVerbs("REVEAL")]
         [Route("{id:int}")]
         public ISolution RevealGame(int id)

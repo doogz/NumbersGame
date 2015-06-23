@@ -15,7 +15,9 @@ namespace MvvmWebApiClient.ViewModels
             NewGameCommand = new DelegateCommand(OnNewGame);
             SubmitSolutionCommand = new DelegateCommand(OnSubmitSolution, CanSubmitSolution);
             NumbersGameViewModel = new NumbersGameViewModel();
-            //TODO: Unity/MEF DI
+            
+            // TODO: Use dependency injection on constructor for INumbersGameWebService implementation
+            // TODO: and use some DI container like Unity/MEF to resolve dependencies
             _webService = new NumbersGameWebService();
         }
 
@@ -37,6 +39,7 @@ namespace MvvmWebApiClient.ViewModels
         private void OnSubmitSolution()
         {
             var solution = new Solution(NumbersGameViewModel.CurrentGamePlayer.History);
+            //_webService.
 
         }
 

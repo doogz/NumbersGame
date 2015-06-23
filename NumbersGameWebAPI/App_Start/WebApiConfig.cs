@@ -60,7 +60,7 @@ namespace NumbersGameWebAPI
         {
             // Web API configuration and services
 
-            // Web API routes
+            // Web API routes - exclusively by attributed routing these days :)
             config.MapHttpAttributeRoutes();
 
             // Suppport DI for repository - for now, we're mocking the database in-memory
