@@ -13,15 +13,38 @@ namespace MvvmWebApiClient.ViewModels
 {
     public class NumbersGameViewModel : BindableBase
     {
+        private DelegateCommand _additionCommandImplementation;
+        private DelegateCommand _subtractionCommandImplementation;
+        private DelegateCommand _multiplicationCommandImplementation;
+        private DelegateCommand _divisionCommandImplementation;
+        private DelegateCommand _undoCommandImplementation;
+        private readonly List<DelegateCommand> _commands=new List<DelegateCommand>(); 
+
         public NumbersGameViewModel()
         {
             CurrentGamePlayer = new NumbersGamePlayer();
-            AdditionCommand = new DelegateCommand(DoAddition, CanDoAddition);
-            SubtractionCommand = new DelegateCommand(DoSubtraction, CanDoSubtraction);
-            MultiplicationCommand = new DelegateCommand(DoMultiplication, CanDoMultiplication);
-            DivisionCommand = new DelegateCommand(DoDivision, CanDoDivision);
-            UndoCommand = new DelegateCommand(UndoLastOperation, CanUndo);
-            SelectedNumbers = new List<int>();
+            
+            _additionCommandImplementation = new DelegateCommand(DoAddition, CanDoAddition);
+            _subtractionCommandImplementation = new DelegateCommand(DoSubtraction, CanDoSubtraction);
+            _multiplicationCommandImplementation = new DelegateCommand(DoMultiplication, CanDoMultiplication);
+            _divisionCommandImplementation = new DelegateCommand(DoDivision, CanDoDivision);
+            _undoCommandImplementation = new DelegateCommand(UndoLastOperation, CanUndo);
+
+            _commands.Add(_additionCommandImplementation);
+            _commands.Add(_subtractionCommandImplementation);
+            _commands.Add(_multiplicationCommandImplementation);
+            _commands.Add(_divisionCommandImplementation);
+            _commands.Add(_undoCommandImplementation);
+            
+
+            AdditionCommand = _additionCommandImplementation;
+            SubtractionCommand = _subtractionCommandImplementation;
+            MultiplicationCommand = _multiplicationCommandImplementation;
+            DivisionCommand = _divisionCommandImplementation;
+            UndoCommand = _undoCommandImplementation;
+
+            //SelectedNumbers = new List<int>(); // new ObservableCollection<int>());
+            SelectedNumbers = new ObservableCollection<int>();
         }
 
         /// <summary>
@@ -47,10 +70,19 @@ namespace MvvmWebApiClient.ViewModels
             get { return _gamePlayer; }
             set { SetProperty(ref _gamePlayer, value); }
         }
-
-        public bool MultiplePossibleUndos
+        public IList<int> SelectedNumbers
         {
-            get { return false; } // Too hard for now ;)
+            get { return _selectedNumbers; }
+            set
+            {
+                SetProperty(ref _selectedNumbers, value);
+                RedoCommands();
+            }
+        }
+
+        public IEnumerable<IOperation> OperationHistory
+        {
+            get { return _gamePlayer.History; }
         }
 
         public bool UndoPossible
@@ -58,39 +90,20 @@ namespace MvvmWebApiClient.ViewModels
             get { return OperationHistory.Any(); }
         }
 
-
-        public IList<int> SelectedNumbers
+        public bool MultiplePossibleUndos
         {
-            get { return _selectedNumbers; }
-            set
-            {
-                _selectedNumbers.Clear();
-                foreach (var v in value)
-                    _selectedNumbers.Add(v);
-
-                
-
-
-                // And this doesn't do it...
-                OnPropertyChanged("SelectedNumbers");
-
-                // This is surely wrong, BUT it does force the UI work as expected for now!
-                // TODO: Go through a simple working Prism example, compare & fix as necessary
-                (AdditionCommand as DelegateCommand).RaiseCanExecuteChanged();
-                (SubtractionCommand as DelegateCommand).RaiseCanExecuteChanged();
-                (MultiplicationCommand as DelegateCommand).RaiseCanExecuteChanged();
-                (DivisionCommand as DelegateCommand).RaiseCanExecuteChanged();
-                (UndoCommand as DelegateCommand).RaiseCanExecuteChanged();
-               // (SubmitCommand as DelegateCommand).RaiseCanExecuteChanged();
-
-            }
-
+            get { return false; } // Too hard for now ;)
         }
 
-        public IEnumerable<IOperation> OperationHistory
+        private void RedoCommands()
         {
-            get { return _gamePlayer.History; }
+            // Force all commands to re-evaluate CanExecute
+            foreach (var c in _commands) 
+                c.RaiseCanExecuteChanged();
         }
+
+       
+
 
         // Internal helpers
         private int Op1 { get { return SelectedNumbers[0]; } }
@@ -139,19 +152,19 @@ namespace MvvmWebApiClient.ViewModels
         
 
         private INumbersGamePlayer _gamePlayer;
-        private readonly ObservableCollection<int> _selectedNumbers = new ObservableCollection<int>(); 
+        private IList<int> _selectedNumbers;
+        //private readonly ObservableCollection<int> _selectedNumbers = new ObservableCollection<int>(); 
 
         // Command implementations (all private)
 
         private void ApplyOperation(IOperation op)
         {
-            _gamePlayer.DoOperation(op);
-            SelectedNumbers = new int[] { };
 
-            // OnPropertyChanged("CurrentGamePlayer");
-            
-            // Prism BindableBase also provides this, it's type-safer
-            OnPropertyChanged(() => CurrentGamePlayer);
+            _gamePlayer.DoOperation(op);
+            OnPropertyChanged("CurrentGamePlayer");
+
+            SelectedNumbers = new int[] { };
+            OnPropertyChanged("SelectedNumbers");
         }
 
         private void DoAddition()

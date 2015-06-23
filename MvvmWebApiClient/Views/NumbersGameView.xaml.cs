@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
@@ -41,7 +42,7 @@ namespace MvvmWebApiClient.Views
             var viewModel = context as NumbersGameViewModel;
             if (viewModel != null)
             {
-                List<int> selectedInts = selItems.Cast<int>().ToList();
+                ObservableCollection<int> selectedInts = new ObservableCollection<int>(selItems.Cast<int>().ToList());
                 viewModel.SelectedNumbers = selectedInts;
             }
         }

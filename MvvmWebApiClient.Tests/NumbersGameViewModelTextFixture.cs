@@ -14,7 +14,7 @@ using ScottLogic.NumbersGame.Game;
 namespace MvvmWebApiClient.Tests
 {
     [TestFixture]
-    public class NumbersGameViewModelTextFixture
+    public class NumbersGameViewModelTestFixture
     {
         private NumbersGameViewModel model;
         [SetUp]
