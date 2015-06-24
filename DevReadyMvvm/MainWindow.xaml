@@ -1,0 +1,18 @@
+﻿<Window x:Class="DevReadyMvvm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding ViewTitle}" Height="350" Width="525">
+    
+    <Grid>
+        <StackPanel Width="100" HorizontalAlignment="Left">
+            <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox Name="txt1" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Submit"/>
+            <Button Content="Change me" Click="Button_Click"/>
+            <Label Content="{Binding Name}" />
+
+        </StackPanel>
+        
+
+    </Grid>
+</Window>

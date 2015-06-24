@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{39B87706-E044-42E1-93A0-A97B68127366}</ProjectGuid>
+    <ProjectGuid>{4A95D3F9-4830-4CD3-B44E-06E8E67E06B3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvvmWebApiClient</RootNamespace>
-    <AssemblyName>MvvmWebApiClient</AssemblyName>
+    <RootNamespace>DevReadyMvvm</RootNamespace>
+    <AssemblyName>DevReadyMvvm</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,8 +36,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,15 +53,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="NumbersGameViewDesignViewModel.cs" />
-    <Compile Include="Services\INumbersGameWebService.cs" />
-    <Compile Include="Services\NumbersGameWebService.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\NumbersGameViewModel.cs" />
-    <Compile Include="Views\NumbersGameView.xaml.cs">
-      <DependentUpon>NumbersGameView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Views\MainWindow.xaml">
+    <Compile Include="ViewModel\SampleViewModel.cs" />
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -71,16 +62,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\NumbersGameView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\SourceObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -98,7 +86,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -108,25 +95,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NumbersGameSdk\NumbersGameSdk.csproj">
-      <Project>{bc4d0096-7745-4702-8c92-3303bb61aedc}</Project>
-      <Name>NumbersGameSdk</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Prism.Mvvm.Desktop\Prism.Mvvm.Desktop.csproj">
-      <Project>{42741133-ac04-473f-a24d-9a44121dbc2b}</Project>
-      <Name>Prism.Mvvm.Desktop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Prism.Mvvm\Prism.Mvvm.csproj">
-      <Project>{a6df5a4a-087e-4422-b1c4-37f99d78b01b}</Project>
-      <Name>Prism.Mvvm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Prism.SharedInterfaces\Prism.SharedInterfaces.csproj">
-      <Project>{0fb574f7-7042-428f-aa56-196fd83120f8}</Project>
-      <Name>Prism.SharedInterfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
