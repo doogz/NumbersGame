@@ -21,6 +21,7 @@ namespace DevReadyMvvm.ViewModel
             _model = model;
         }
 
+       
         SourceObject _model = null; // Quite like the convention of leaving off 'private'
 
         // INotifyPropertyChanged:
@@ -28,26 +29,27 @@ namespace DevReadyMvvm.ViewModel
 
         // That is the interface completed! Except, we also need to raise events; that's our responsibility
         // Here's a helper for property-set accessors to use to that end:
-        // 
-        void RaisePropertyChangedEventHelper([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var args = new PropertyChangedEventArgs(propertyName);
-            PropertyChanged(this, args);
+            if (PropertyChanged != null) 
+            {
+                PropertyChanged(this, 
+                    new PropertyChangedEventArgs(propertyName) );
+            }
         }
 
         public string ViewTitle { get { return "This is SampleViewModel"; } }
-
-        //private string _name;
 
         public string Name
         {
             get { return _model.Item.Name; }
             set
             {
-                if (value == _model.Item.Name)
-                    return;
+                
+                //if (value == _model.Item.Name)
+                //    return;
                 _model.Item.Name = value;
-                RaisePropertyChangedEventHelper(); // Will automatically supply 'Name' here  :-)
+                OnPropertyChanged(); // Will automatically supply 'Name' here  :-)
 
             }
         }

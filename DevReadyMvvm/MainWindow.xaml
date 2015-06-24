@@ -6,8 +6,8 @@
     <Grid>
         <StackPanel Width="100" HorizontalAlignment="Left">
             <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox Name="txt1" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Content="Submit"/>
+            <TextBox Name="txt1" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Submit" Click="Button_Submit"/>
             <Button Content="Change me" Click="Button_Click"/>
             <Label Content="{Binding Name}" />
 

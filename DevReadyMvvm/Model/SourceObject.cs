@@ -8,7 +8,8 @@ namespace DevReadyMvvm.Model
 {
     public class SourceObject
     {
-        public string ViewTitle { get; set; }
+        public string ViewTitle { get { return "This is SourceObject"; } }
+
         private ChildObject _item = new ChildObject();
 
         public ChildObject Item

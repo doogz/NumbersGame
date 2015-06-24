@@ -24,12 +24,21 @@ namespace DevReadyMvvm
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new SampleViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SampleViewModel source = (SampleViewModel) DataContext;
+            SampleViewModel source = (SampleViewModel)DataContext;
+            source.Name = "Duncan";
+            
+        }
+
+        private void Button_Submit(object sender, RoutedEventArgs e)
+        {
+            SampleViewModel source = (SampleViewModel)DataContext;
             MessageBox.Show("The textbox says: " + source.Name);
+
         }
     }
 }
