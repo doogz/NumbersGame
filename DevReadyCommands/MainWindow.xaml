@@ -1,8 +1,12 @@
 ﻿<Window x:Class="DevReadyCommands.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="284.615" Width="372.436">
     <Grid>
-        
+        <Label Content="MVVM Commanding" FontSize="20" HorizontalAlignment="Left" Margin="54,10,0,0" VerticalAlignment="Top" Height="44" Width="203"/>
+        <Button Content="Col1" HorizontalAlignment="Left" Margin="54,73,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Col2" HorizontalAlignment="Left" Margin="182,73,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="This is my content" HorizontalAlignment="Left" Margin="54,137,0,0" VerticalAlignment="Top" Width="203"/>
+
     </Grid>
 </Window>
