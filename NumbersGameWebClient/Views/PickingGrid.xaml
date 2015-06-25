@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="ScottLogic.NumbersGame.WebClient.Views.PickingGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="600"
+             Width="400" Height="200">
+    <!-- 
+    
+    Required behaviour
+    ******************
+    
+    The "picking grid" is used to display a bunch of unknown-value number tiles,
+    arranged as rows from the same "numbers bag" (See SDK).
+    
+    At the beginning of each "game", a user is required to select a set number of tiles (6 in standard rules.)
+    These tiles are revealed as they are picked, onto the CurrentNumbersShelf, and removed from the picking grid.
+    
+    The picking grid itself should have a neutral/grey colour; we'd like to flash the grid for certain effects, so
+    include a grid backg colour in the viewmodel.
+
+    As a user, I want to be able to pick my own numbers, rather than provide the instruction "x big ones (and the rest from anywhere else)".
+    As it happens, the rules-compliant random number bag generation and simulated picking is already in the SDK.
+    
+    Now to some detail on the picking grid, so we can pick a reasonable WPF implementation.
+    We'll want to capture the actual tile clicked on; not just the row.
+    -->
+ 
+        <DockPanel>
+            <Viewport3D>
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <GeometryModel3D>
+                            <GeometryModel3D.Geometry>
+                                <MeshGeometry3D
+                                Positions="-0.5  0.5  -0.5,  0.5  0.5  -0.5,
+                                           -0.5  0  0.5,  0.5  0  0.5"
+                                TriangleIndices=" 0  2  1,  1  2  3"
+                                TextureCoordinates="0 0, 1 0, 0 1, 1 1" />
+                            </GeometryModel3D.Geometry>
+
+                            <GeometryModel3D.Material>
+                                <DiffuseMaterial>
+                                    <DiffuseMaterial.Brush>
+                                        <VisualBrush>
+                                            <VisualBrush.Visual>
+                                                <ListBox>
+                                                    <ListBoxItem>[??] [??] [??] [??] [??] [??]</ListBoxItem>
+                                                    <ListBoxItem>[??] [??] [??] [??] [??] [??]</ListBoxItem>
+                                                    <ListBoxItem>[??] [??] [??] [??] [??] [??]</ListBoxItem>
+                                                <ListBoxItem>[??] [??] [??] [??] [??] [??]</ListBoxItem>
+                                            </ListBox>
+                                            
+                                                <!--
+                                            <Grid Name="PickGrid">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                            </Grid>
+                                                -->
+
+                                        </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </DiffuseMaterial.Brush>
+                                </DiffuseMaterial>
+                            </GeometryModel3D.Material>
+
+                            <!-- Non-Affine Matrix Transform. -->
+                            <GeometryModel3D.Transform>
+                                <MatrixTransform3D>
+                                </MatrixTransform3D>
+                            </GeometryModel3D.Transform>
+
+                        </GeometryModel3D>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+
+                <!-- Light sources. -->
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            <AmbientLight Color="#404040" />
+                            <DirectionalLight Color="#C0C0C0" Direction="0 -2 -1" />
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+
+                <!-- Camera. -->
+                <Viewport3D.Camera>
+                    <PerspectiveCamera Position="0 0.2 1"
+                                   LookDirection="0 0 -1.5"
+                                   UpDirection="0 1 0"
+                                   FieldOfView="100">
+                    </PerspectiveCamera>
+                </Viewport3D.Camera>
+            </Viewport3D>
+        </DockPanel>
+</UserControl>

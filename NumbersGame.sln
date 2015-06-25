@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameSdk.Tests", "NumbersGameTests\NumbersGameSdk.Tests.csproj", "{85EF4237-8514-40AD-BA28-C3F3C8756D05}"
 EndProject
@@ -20,11 +20,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedfreakSolver", "Speedfr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedfreakSolver.Tests", "Speedfreak Tests\SpeedfreakSolver.Tests.csproj", "{1062F3BD-D8B7-424D-B325-0B5B66C980D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameWebAPI", "NumbersGameWebAPI\NumbersGameWebAPI.csproj", "{877042E7-2B20-495F-BA99-EDEE05EF37EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "NumbersGameWebAPI\GameServer.csproj", "{877042E7-2B20-495F-BA99-EDEE05EF37EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmWebApiClient", "MvvmWebApiClient\MvvmWebApiClient.csproj", "{39B87706-E044-42E1-93A0-A97B68127366}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismWebClient", "MvvmWebApiClient\PrismWebClient.csproj", "{39B87706-E044-42E1-93A0-A97B68127366}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmWebApiClient.Tests", "MvvmWebApiClient.Tests\MvvmWebApiClient.Tests.csproj", "{7B4474B8-5CAB-469E-BADE-2B0506CAEFD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismWebClient.Tests", "MvvmWebApiClient.Tests\PrismWebClient.Tests.csproj", "{7B4474B8-5CAB-469E-BADE-2B0506CAEFD0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C8646AB-CB68-4DA2-9AC4-9E102A05226A}"
 	ProjectSection(SolutionItems) = preProject
@@ -33,17 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightWebClient", "LightWebClient\LightWebClient.csproj", "{4C38F8D5-D7D1-434D-A0C0-66D66003761E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGameWebClient", "NumbersGameWebClient\NumbersGameWebClient.csproj", "{CEF4DDE7-12AC-45E5-9B26-F767C1A9575F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Mvvm", "Prism.Mvvm\Prism.Mvvm.csproj", "{A6DF5A4A-087E-4422-B1C4-37F99D78B01B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Mvvm.Desktop", "Prism.Mvvm.Desktop\Prism.Mvvm.Desktop.csproj", "{42741133-AC04-473F-A24D-9A44121DBC2B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.SharedInterfaces", "Prism.SharedInterfaces\Prism.SharedInterfaces.csproj", "{0FB574F7-7042-428F-AA56-196FD83120F8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevReadyMvvm", "DevReadyMvvm\DevReadyMvvm.csproj", "{4A95D3F9-4830-4CD3-B44E-06E8E67E06B3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevReadyCommands", "DevReadyCommands\DevReadyCommands.csproj", "{A63147D3-B570-42E2-9AEB-C1EBD90DE7BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "NumbersGameWebClient\WebClient.csproj", "{CEF4DDE7-12AC-45E5-9B26-F767C1A9575F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,26 +89,6 @@ Global
 		{CEF4DDE7-12AC-45E5-9B26-F767C1A9575F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEF4DDE7-12AC-45E5-9B26-F767C1A9575F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEF4DDE7-12AC-45E5-9B26-F767C1A9575F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A6DF5A4A-087E-4422-B1C4-37F99D78B01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6DF5A4A-087E-4422-B1C4-37F99D78B01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6DF5A4A-087E-4422-B1C4-37F99D78B01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6DF5A4A-087E-4422-B1C4-37F99D78B01B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42741133-AC04-473F-A24D-9A44121DBC2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42741133-AC04-473F-A24D-9A44121DBC2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42741133-AC04-473F-A24D-9A44121DBC2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42741133-AC04-473F-A24D-9A44121DBC2B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0FB574F7-7042-428F-AA56-196FD83120F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FB574F7-7042-428F-AA56-196FD83120F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FB574F7-7042-428F-AA56-196FD83120F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FB574F7-7042-428F-AA56-196FD83120F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A95D3F9-4830-4CD3-B44E-06E8E67E06B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A95D3F9-4830-4CD3-B44E-06E8E67E06B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A95D3F9-4830-4CD3-B44E-06E8E67E06B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A95D3F9-4830-4CD3-B44E-06E8E67E06B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A63147D3-B570-42E2-9AEB-C1EBD90DE7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A63147D3-B570-42E2-9AEB-C1EBD90DE7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A63147D3-B570-42E2-9AEB-C1EBD90DE7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A63147D3-B570-42E2-9AEB-C1EBD90DE7BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

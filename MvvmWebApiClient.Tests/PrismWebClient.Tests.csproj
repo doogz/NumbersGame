@@ -52,9 +52,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvvmWebApiClient\MvvmWebApiClient.csproj">
+    <ProjectReference Include="..\MvvmWebApiClient\PrismWebClient.csproj">
       <Project>{39B87706-E044-42E1-93A0-A97B68127366}</Project>
-      <Name>MvvmWebApiClient</Name>
+      <Name>PrismWebClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\NumbersGameSdk\NumbersGameSdk.csproj">
       <Project>{BC4D0096-7745-4702-8C92-3303BB61AEDC}</Project>

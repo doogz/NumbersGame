@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ScottLogic.NumbersGame.WebClient
+namespace ScottLogic.NumbersGame.WebClient.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PickingGridCellView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PickingGridCellView : UserControl
     {
-        public MainWindow()
+        public PickingGridCellView()
         {
             InitializeComponent();
         }

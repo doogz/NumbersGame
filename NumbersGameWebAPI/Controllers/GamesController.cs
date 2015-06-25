@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using ScottLogic.NumbersGame;
-using ScottLogic.NumbersGame.Game;
+using NumbersGameWebAPI;
 
-namespace NumbersGameWebAPI.Controllers
+namespace ScottLogic.NumbersGame.GameServer.Controllers
 {
     [RoutePrefix("api/games")]
     public class GamesController : ApiController

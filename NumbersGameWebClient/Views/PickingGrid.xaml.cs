@@ -3,11 +3,11 @@
 namespace ScottLogic.NumbersGame.WebClient.Views
 {
     /// <summary>
-    /// Interaction logic for UserRegistrationView.xaml
+    /// Interaction logic for PickingGrid.xaml
     /// </summary>
-    public partial class UserRegistrationView : UserControl
+    public partial class PickingGrid : UserControl
     {
-        public UserRegistrationView()
+        public PickingGrid()
         {
             InitializeComponent();
         }
